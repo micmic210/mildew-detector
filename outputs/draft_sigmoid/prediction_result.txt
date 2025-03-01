@@ -1,0 +1,2 @@
+Predicted Class: Infected
+Prediction Probability: 0.9938
