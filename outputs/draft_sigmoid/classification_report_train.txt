@@ -1,8 +1,8 @@
               precision    recall  f1-score   support
 
-     Healthy      0.511     0.503     0.507      1472
-    Infected      0.511     0.518     0.514      1472
+     Healthy      0.518     0.517     0.518      1472
+    Infected      0.518     0.519     0.518      1472
 
-    accuracy                          0.511      2944
-   macro avg      0.511     0.511     0.511      2944
-weighted avg      0.511     0.511     0.511      2944
+    accuracy                          0.518      2944
+   macro avg      0.518     0.518     0.518      2944
+weighted avg      0.518     0.518     0.518      2944
