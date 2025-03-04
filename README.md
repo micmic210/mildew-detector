@@ -90,6 +90,28 @@ A well-trained CNN model can **classify cherry leaves** with **≥90% accuracy**
 
 ---
 
+### **Hypothesis 3: Model Confidence Scores Indicate Prediction Reliability**  
+**Statement:**  
+A well-calibrated CNN model should provide **high confidence scores for correct predictions** and **lower confidence scores for misclassified images**. If misclassified images have **high confidence scores (>90%)**, it may indicate overconfidence, requiring threshold tuning.
+
+### **Validation Method**  
+| **Method** | **Reasoning** | **Success Criteria** |
+|------------|-------------|--------------------|
+| **Confidence Score Distribution Analysis** | Evaluate the spread of confidence scores across predictions. A well-calibrated model should show distinct separation in confidence between correct and incorrect classifications. | Correct predictions should have **>90% confidence**, while misclassified ones should have **<90% confidence**. |
+| **Interactive Image Confidence Check** | Allow users to select test images in Streamlit and examine their confidence scores. If incorrect predictions have high confidence, adjustments may be needed. | Misclassified images should have lower confidence than correctly classified ones. |
+| **Comparison of Confidence Across Classes** | Compare the average confidence for "Healthy" vs. "Infected" images to identify potential bias in predictions. | No extreme bias (e.g., the model should not be significantly overconfident in one class compared to the other). |
+
+### **Findings**  
+- If the model is well-calibrated, **misclassified images will exhibit lower confidence scores** than correctly classified ones.  
+- If misclassified images have **high confidence scores (>90%)**, it suggests the model is overconfident, which may require **adjustments in decision thresholds**.  
+- If the model shows **overconfidence in one class (e.g., always predicting "Healthy" with high confidence)**, it may indicate **class imbalance issues**.  
+
+### **Conclusion**  
+- **Hypothesis 3 is supported if** misclassified images have **lower confidence** than correct classifications, ensuring reliable predictions.  
+- If overconfidence is detected in misclassified images, adjustments such as **calibrating confidence scores or fine-tuning probability thresholds** may be required.  
+
+---
+
 ## Data Processing Pipeline
 
 ### **Data Collection**
@@ -168,7 +190,18 @@ A well-trained CNN model can **classify cherry leaves** with **≥90% accuracy**
 - Deploy on **Heroku for global access**.
 
 ---
+### **User Story 4: Confidence Score Analysis for Model Reliability**  
+**As a** Researcher / Agricultural Consultant  
+**I want to** analyze the **confidence levels** of the AI model for each prediction  
+**So that** I can **assess its reliability** and identify **potential misclassifications**.  
 
+#### **Acceptance Criteria**  
+- Display **Prediction Probability Histogram** to show the overall distribution of confidence scores.  
+- Allow users to **select test images** and view their **confidence scores**.  
+- Ensure **misclassified images have lower confidence** than correct classifications.  
+- Provide a **summary of confidence trends** to support business decisions.  
+
+---
 ## **Deployment**
 
 ### **Heroku Deployment**
