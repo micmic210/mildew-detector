@@ -1,0 +1,170 @@
+import streamlit as st
+import matplotlib.pyplot as plt
+import pandas as pd
+import pickle
+from matplotlib.image import imread
+
+
+# Function to safely load test evaluation from evaluation.pkl
+def load_test_evaluation(version):
+    file_path = f"outputs/{version}/evaluation.pkl"
+    try:
+        with open(file_path, "rb") as file:
+            test_eval = pickle.load(file)
+
+        # Ensure data is in expected format
+        if isinstance(test_eval, dict):  # If dict, extract values
+            test_eval = list(test_eval.values())
+        return test_eval  # Expecting [loss, accuracy]
+
+    except FileNotFoundError:
+        st.error(f"File not found: {file_path}")
+        return None
+    except Exception as e:
+        st.error(f"Error loading evaluation.pkl: {e}")
+        return None
+
+
+# Define the main function to display model performance metrics
+def page_ml_performance_metrics():
+    """Displays the performance metrics of the trained ML model."""
+
+    version = "v1"
+
+    st.write("## Model Performance & Evaluation")
+
+    st.info(
+        "This section presents how the dataset was split for training, "
+        "how well the model performed, and key performance metrics."
+    )
+
+    # Dataset Split & Class Distribution
+    st.write("### Dataset Split & Class Distribution")
+
+    labels_distribution = plt.imread(f"outputs/{version}/labels_distribution.png")
+    st.image(
+        labels_distribution,
+        caption="Class Distribution in Train, Validation, and Test Sets",
+    )
+
+    st.warning(
+        "**Dataset Partitioning:**\n"
+        "- **Training Set (70%)** → Model learns from this set.\n"
+        "- **Validation Set (10%)** → Used for model fine-tuning.\n"
+        "- **Test Set (20%)** → Evaluates final model performance on unseen data."
+    )
+
+    st.write("---")
+
+    # Classification Reports (Train & Test)
+    st.write("### Classification Report (Train vs. Test)")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.write("#### Train Set Classification Report")
+        with open(f"outputs/{version}/classification_report_train.txt", "r") as file:
+            st.text(file.read())
+
+    with col2:
+        st.write("#### Test Set Classification Report")
+        with open(f"outputs/{version}/classification_report_test.txt", "r") as file:
+            st.text(file.read())
+
+    st.warning(
+        "**Classification Report Interpretation:**\n"
+        "- **Train Set:** Measures how well the model classifies training data.\n"
+        "- **Test Set:** Evaluates model's generalization to new, unseen data.\n"
+        "- **Precision:** Accuracy of positive class predictions.\n"
+        "- **Recall:** Ability to detect actual positive cases.\n"
+        "- **F1 Score:** Balance of Precision & Recall (ideal when close to 1.0).\n"
+        "- **A well-generalized model** should show **similar performance on both Train & Test sets**."
+    )
+
+    st.write("---")
+
+    # Confusion Matrix (Train vs. Test)
+    st.write("### Confusion Matrix (Train vs. Test)")
+
+    model_cm = plt.imread(f"outputs/{version}/confusion_matrices_train_test.png")
+    st.image(model_cm, caption="Confusion Matrices (Train & Test Side-by-Side)")
+
+    st.warning(
+        "**Confusion Matrix Interpretation:**\n"
+        "- **True Positives (TP) & True Negatives (TN):** Correctly classified cases.\n"
+        "- **False Positives (FP) & False Negatives (FN):** Incorrect classifications.\n"
+        "- A good model should have **low False Positives & False Negatives**, while maintaining high TP & TN."
+    )
+
+    st.write("---")
+
+    # ROC Curve
+    st.write("### ROC Curve")
+
+    model_roc = plt.imread(f"outputs/{version}/roc_curve.png")
+    st.image(model_roc, caption="ROC Curve")
+
+    st.warning(
+        "**ROC Curve Analysis:**\n"
+        "- **True Positive Rate (TPR):** Correctly classified positives.\n"
+        "- **False Positive Rate (FPR):** Incorrectly classified negatives.\n"
+        "- **AUC Score (≥0.90 recommended):** Measures the model’s ability to distinguish between classes."
+    )
+
+    st.write("---")
+
+    # Model Learning Curves (Accuracy & Loss)
+    st.write("### Model Training Performance")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        model_acc = plt.imread(f"outputs/{version}/model_training_acc.png")
+        st.image(model_acc, caption="Model Training Accuracy")
+
+    with col2:
+        model_loss = plt.imread(f"outputs/{version}/model_training_losses.png")
+        st.image(model_loss, caption="Model Training Loss")
+
+    st.warning(
+        "**Training & Validation Curves:**\n"
+        "- **Loss Curve:** Measures how well the model learns over time.\n"
+        "- **Accuracy Curve:** Evaluates model performance across training epochs.\n"
+        "- **Ideal Scenario:** Validation accuracy should closely follow training accuracy to avoid overfitting."
+    )
+
+    st.write("---")
+
+    # Histograms
+    st.write("### Histogram of Prediction Probabilities (Test Set)")
+
+    model_hist = plt.imread(f"outputs/{version}/histogram_test.png")
+    st.image(model_hist, caption="Prediction Probabilities Histogram (Test Set)")
+
+    st.warning(
+        "**Histogram Analysis:**\n"
+        "- Displays confidence score distribution for predictions.\n"
+        "- Well-calibrated models should have **high-confidence correct predictions** "
+        "and **low-confidence incorrect predictions**."
+    )
+
+    st.write("---")
+
+    # Generalized Model Performance on Test Set
+    st.write("### Final Model Performance on Test Set")
+
+    test_eval = load_test_evaluation(version)
+
+    # Ensure test_eval is correctly formatted
+    if isinstance(test_eval, (list, tuple)) and len(test_eval) == 2:
+        df_test_eval = pd.DataFrame(
+            {"Metric": ["Loss", "Accuracy"], "Value": test_eval}
+        )
+        st.table(df_test_eval)
+    else:
+        st.error("Unexpected format in evaluation.pkl. Verify file contents.")
+
+    st.write(
+        "For additional details, visit the "
+        "[Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)."
+    )

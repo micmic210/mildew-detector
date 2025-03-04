@@ -1,6 +1,5 @@
 import streamlit as st
-
-# Define the layout and project summary page
+import glob
 
 
 def page_summary_body():
@@ -8,10 +7,12 @@ def page_summary_body():
     dataset details, and business requirements.
     """
 
-    st.write("## 🍒 Project Summary")
-    st.write("### 🌿 General Information")
+    # Page Title
+    st.write("## Project Summary")
+    st.write("### General Information")
     st.write("#### Powdery Mildew on Cherry Trees")
 
+    # Project Description
     st.write(
         "Powdery mildew is a widespread fungal disease that affects a variety of plants, "
         "manifesting as **light grey or white powdery spots** primarily on leaves but also "
@@ -29,29 +30,43 @@ def page_summary_body():
         "instantly using **leaf images**. If successful, this technology could be expanded to **other crops**."
     )
 
-    # Display healthy and infected leaf images
-    image_paths = [
-        "inputs/cherry-leaves_dataset/cherry-leaves/healthy/00a8e886-d172-4261-85e2-780b3c50ad4d___JR_HL 4156.JPG",
-        "inputs/cherry-leaves_dataset/cherry-leaves/fungal-infected/0a283423-3a6d-43a4-92e5-267c8153ca45___FREC_Pwd.M 4921_flipLR.JPG",
-    ]
-    captions = ["Healthy Leaf", "Mildew-Infected Leaf"]
+    # Auto-Detect Images
+    healthy_images = glob.glob(
+        "inputs/mildew_dataset/cherry-leaves/train/Healthy/*.JPG"
+    )
+    infected_images = glob.glob(
+        "inputs/mildew_dataset/cherry-leaves/train/Infected/*.JPG"
+    )
 
-    st.image(image_paths, caption=captions, width=300)
+    if healthy_images and infected_images:
+        image_paths = [
+            healthy_images[0],
+            infected_images[0],
+        ]  # Use the first image from each class
+        captions = ["Healthy Leaf", "Mildew-Infected Leaf"]
+        st.image(image_paths, caption=captions, width=300)
+    else:
+        st.warning(
+            "⚠️ No images found in dataset! Please check the directory structure."
+        )
 
+    # External Resources
     st.info(
         "**For additional information:**\n"
         "- 📖 [Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)\n"
         "- 🌎 [Wikipedia: Powdery Mildew](https://en.wikipedia.org/wiki/Powdery_mildew)"
     )
 
-    st.write("## 📌 Business Requirements")
+    # Business Requirements
+    st.write("## Business Requirements")
     st.write(
         "This project addresses **two key business requirements:**\n"
-        "**Differentiate** between **healthy cherry leaves** and those affected by powdery mildew.\n"
-        "**Develop an AI model** to **predict whether a given leaf is healthy or infected.**"
+        "1️⃣ **Differentiate** between **healthy cherry leaves** and those affected by powdery mildew.\n"
+        "2️⃣ **Develop an AI model** to **predict whether a given leaf is healthy or infected.**"
     )
 
-    st.write("### 📊 Project Dataset")
+    # Dataset Description
+    st.write("### Project Dataset")
     st.write(
         "The dataset, provided by **Farmy & Foods**, consists of cherry tree leaf images used for "
         "training and evaluating the AI model.\n\n"
