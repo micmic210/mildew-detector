@@ -36,32 +36,27 @@ The dataset contains images of cherry leaves categorized into two classes:
     - Develop an ML model that classifies cherry leaves based on image analysis.
 
 ---
-## Hypothesis Validation
 
-### Hypothesis 1: Visual Differences Exist  
+### **Hypothesis 1: Visual Differences Exist**  
 **Statement:**  
 - Healthy cherry leaves have a **uniform texture and consistent brightness**.  
-- Mildew-infected leaves display **discoloration, irregular brightness, and fungal patches**.
+- Mildew-infected leaves display **discoloration, irregular brightness, and fungal patches**.  
 
-#### Validation Method  
-| Method | Reasoning | Success Criteria |
-|--------|----------|-----------------|
+#### **Validation Method**  
+| **Method** | **Reasoning** | **Success Criteria** |
+|------------|-------------|-----------------|
 | **Mean & Standard Deviation Images** | Compare overall color and texture patterns in both classes. | Observable color/texture differences. |
-| **Histograms of Color Distributions** | Analyze RGB intensity shifts. Distinct histogram peaks confirm differentiation. | Statistically significant differences in histogram distributions. |
 | **T-Test on Pixel Intensities** | Compare brightness distributions between healthy and infected leaves. If p-value < 0.05, differences are statistically significant. | **p < 0.05** confirms that brightness is a distinguishing factor. |
+| **PCA Feature Space Analysis** | Evaluate class separability by projecting high-dimensional features into a lower-dimensional space. | Clear clustering of Healthy vs. Infected leaves in PCA visualization. |
 
-#### Findings  
+#### **Findings**  
 - The **mean image of mildew-infected leaves** shows **lighter patches and uneven coloration** compared to healthy leaves.  
-- **Histograms reveal distinct color distribution patterns**: mildew-affected leaves exhibit **higher variations in brightness**.  
-- **T-test result**:  
-  - **T-statistic: 428.1792**  
-  - **P-value: 0.0000e+00**  
-  **Statistically significant difference detected.**  
-- This confirms that **brightness features are useful for classification.**
+- **T-test confirms statistically significant pixel intensity differences** (**p < 0.05**) between classes.  
+- **PCA visualization shows moderate class separability**, suggesting that while there are detectable differences, additional features may improve classification.  
 
-**Conclusion:**  
-- **Hypothesis 1 is supported by statistical evidence** (T-test, histograms).  
-- **Brightness and color variations** are effective features for mildew detection.
+#### **Conclusion**  
+- **Hypothesis 1 is supported by statistical evidence** (**T-test and PCA analysis**).  
+- **Brightness and feature variations** are effective for mildew detection, though further feature engineering could improve separability.  
 
 ---
 
