@@ -1,2 +1,0 @@
-Predicted Class: Healthy
-Prediction Probability: 0.9999
