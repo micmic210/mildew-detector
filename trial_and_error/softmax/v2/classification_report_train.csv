@@ -1,6 +1,0 @@
-,precision,recall,f1-score,support
-Healthy,0.508,0.505,0.506,1472.0
-Infected,0.507,0.51,0.509,1472.0
-accuracy,0.507,0.507,0.507,0.507
-macro avg,0.507,0.507,0.507,2944.0
-weighted avg,0.507,0.507,0.507,2944.0
