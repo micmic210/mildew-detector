@@ -1,0 +1,4 @@
+Model,Training Accuracy,Validation Accuracy,Test Accuracy,Training Time (sec),Inference Time (sec/sample),Batch Size,Overfitting Risk
+Softmax,0.9946,0.9738,,1915.6,,16,No
+Softmax,0.9946,0.9738,0.9822,2050.39,,32,No
+Softmax,0.9946,0.9738,0.9822,2661.55,0.0602,16,No
