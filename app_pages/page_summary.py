@@ -44,11 +44,17 @@ def page_summary_body():
             infected_images[0],
         ]  # Use the first image from each class
         captions = ["Healthy Leaf", "Mildew-Infected Leaf"]
-        st.image(image_paths, caption=captions, width=300)
+
+        # Use columns for responsiveness (side by side on wide screens, stacked on small screens)
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.image(image_paths[0], caption=captions[0], width=250)
+        with col2:
+            st.image(image_paths[1], caption=captions[1], width=250)
+
     else:
-        st.warning(
-            "⚠️ No images found in dataset! Please check the directory structure."
-        )
+        st.warning("No images found in dataset! Please check the directory structure.")
 
     # External Resources
     st.info(

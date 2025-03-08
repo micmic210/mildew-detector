@@ -2,30 +2,22 @@ import streamlit as st
 
 
 class MultiPage:
-    """
-    A class to manage multiple pages in a Streamlit app.
-    """
-
-    def __init__(self, app_name: str) -> None:
+    def __init__(self, app_name) -> None:
         """
-        Initializes the multipage application.
-
-        Parameters:
-        - app_name (str): The title of the application.
+        Initializes the multi-page application.
         """
         self.pages = []
         self.app_name = app_name
 
-        # Set the page configuration
         st.set_page_config(
             page_title=self.app_name,
-            page_icon="🍒", 
-            layout="wide",  # "centered" is another option
+            page_icon="🍃",
+            layout="wide",
         )
 
-    def add_page(self, title: str, func) -> None:
+    def add_page(self, title, func) -> None:
         """
-        Adds a new page to the multipage app.
+        Adds a new page to the multi-page app.
 
         Parameters:
         - title (str): The name of the page.
@@ -33,13 +25,25 @@ class MultiPage:
         """
         self.pages.append({"title": title, "function": func})
 
-    def run(self) -> None:
+    def run(self):
         """
-        Runs the multipage app by displaying the selected page.
+        Runs the multi-page app with the default Streamlit sidebar.
         """
-        # Set the sidebar layout
-        st.sidebar.header("📌 Navigation")
+        # Sidebar Navigation
         page = st.sidebar.radio(
-            "Select a page:", self.pages, format_func=lambda page: page["title"]
+            "Menu", self.pages, format_func=lambda page: page["title"]
         )
+
+        # Display a common title
+        st.markdown(
+            """
+            <h1 style='text-align: center; font-size: 50px; font-weight: bold; color: #567d46;'>
+            🍃 Powdery Mildew Detector
+            </h1>
+            <hr style='border: 2px solid #567d46;'>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Render the selected page
         page["function"]()

@@ -59,17 +59,32 @@ def page_ml_performance_metrics():
     # Classification Reports (Train & Test)
     st.write("### Classification Report (Train vs. Test)")
 
-    col1, col2 = st.columns(2)
+    # Load the classification reports
+    train_report_path = f"outputs/{version}/classification_report_train.csv"
+    test_report_path = f"outputs/{version}/classification_report_test.csv"
 
-    with col1:
-        st.write("#### Train Set Classification Report")
-        with open(f"outputs/{version}/classification_report_train.txt", "r") as file:
-            st.text(file.read())
+    # Function to apply color formatting to DataFrame
+    def highlight_cells(val):
+        if isinstance(val, (int, float)):  # Ensure we only format numbers
+            if val >= 0.9:
+                return "background-color: #c6efce; color: #006400;"  # Green for high values
+            elif val <= 0.6:
+                return (
+                    "background-color: #ffc7ce; color: #9c0006;"  # Red for low values
+                )
+        return ""
 
-    with col2:
-        st.write("#### Test Set Classification Report")
-        with open(f"outputs/{version}/classification_report_test.txt", "r") as file:
-            st.text(file.read())
+    # Display Train Set Classification Report
+    st.write("#### Train Set Classification Report")
+    train_report = pd.read_csv(train_report_path)
+    st.dataframe(train_report.style.applymap(highlight_cells))
+
+    st.write("---")  # Add spacing between reports
+
+    # Display Test Set Classification Report
+    st.write("#### Test Set Classification Report")
+    test_report = pd.read_csv(test_report_path)
+    st.dataframe(test_report.style.applymap(highlight_cells))
 
     st.warning(
         "**Classification Report Interpretation:**\n"
@@ -86,9 +101,19 @@ def page_ml_performance_metrics():
     # Confusion Matrix (Train vs. Test)
     st.write("### Confusion Matrix (Train vs. Test)")
 
-    model_cm = plt.imread(f"outputs/{version}/confusion_matrices_train_test.png")
-    st.image(model_cm, caption="Confusion Matrices (Train & Test Side-by-Side)")
+    # Define file paths
+    train_cm_path = f"outputs/{version}/confusion_matrix_train.png"
+    test_cm_path = f"outputs/{version}/confusion_matrix_test.png"
 
+    # Load and display Train Confusion Matrix
+    train_cm = plt.imread(train_cm_path)
+    st.image(train_cm, caption="Confusion Matrix (Train Set)", use_column_width=True)
+
+    # Load and display Test Confusion Matrix
+    test_cm = plt.imread(test_cm_path)
+    st.image(test_cm, caption="Confusion Matrix (Test Set)", use_column_width=True)
+
+    # Explanation of Confusion Matrix
     st.warning(
         "**Confusion Matrix Interpretation:**\n"
         "- **True Positives (TP) & True Negatives (TN):** Correctly classified cases.\n"
@@ -119,11 +144,11 @@ def page_ml_performance_metrics():
     col1, col2 = st.columns(2)
 
     with col1:
-        model_acc = plt.imread(f"outputs/{version}/model_training_acc.png")
+        model_acc = plt.imread(f"outputs/{version}/accuracy_curve_softmax.png")
         st.image(model_acc, caption="Model Training Accuracy")
 
     with col2:
-        model_loss = plt.imread(f"outputs/{version}/model_training_losses.png")
+        model_loss = plt.imread(f"outputs/{version}/loss_curve_softmax.png")
         st.image(model_loss, caption="Model Training Loss")
 
     st.warning(
