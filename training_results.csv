@@ -1,0 +1,2 @@
+Model,Training Accuracy,Validation Accuracy,Test Accuracy,Training Time (sec),Inference Time (sec/sample),Batch Size,Overfitting Risk
+MobileNetV2,0.9997,1.0,1.0,1484.98,0.1658,16,No
