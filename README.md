@@ -136,7 +136,6 @@ A well-calibrated CNN model should provide **high confidence scores for correct 
 - **Outputs:**
   - Best-performing model selected based on cross-validation.
   - Confusion Matrix, Learning Curve, and Classification Report.
-  - **Saliency Map** integrated for visual interpretability.
 
 ---
 
@@ -146,6 +145,23 @@ A well-calibrated CNN model should provide **high confidence scores for correct 
 |--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
 | **Visual Differentiation**          | - Compute **mean & standard deviation images**.  <br>- Generate **image montages**.  <br>- Compare **histogram distributions** of healthy vs. infected leaves.  |
 | **Mildew Detection**                 | - Train a **CNN classifier** with optimized hyperparameters.  <br>- Deploy a **Streamlit dashboard** for real-time classification. |
+
+---
+
+---
+
+## Rationale for Model Selection
+
+To select the best ML model, three different architectures were tested with multiple hyperparameter variations:
+
+1. **Sigmoid-Based CNN** → Chosen because binary classification tasks typically use a sigmoid activation function.
+2. **Softmax-Based CNN** → Explored as a potential scalable option for future applications beyond binary classification.
+3. **MobileNetV2** → Selected for its lightweight architecture and extensive use in image classification, making it a strong candidate for deployment.
+
+### Model Selection Process
+- Three trials were conducted for each model, fine-tuning hyperparameters such as learning rate, batch size, dropout rate, and number of layers.
+- The final decision was based on test accuracy, generalization ability, computational efficiency, and robustness.
+- **Softmax v3 emerged as the best model** due to its high test accuracy (~99.5%), balanced generalization, and minimal overfitting, outperforming MobileNetV2.
 
 ---
 
