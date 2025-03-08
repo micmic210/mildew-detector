@@ -1,2 +1,3 @@
 Model,Training Accuracy,Validation Accuracy,Test Accuracy,Training Time (sec),Inference Time (sec/sample),Batch Size,Overfitting Risk
 MobileNetV2,0.9997,1.0,1.0,1484.98,0.1658,16,No
+Softmax,0.9912,0.9952,1.0,571.14,0.1119,16,No
