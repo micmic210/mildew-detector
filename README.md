@@ -139,7 +139,6 @@ By integrating ML into farm operations, Farmy & Foods can **streamline disease d
 
 ---
 
-
 ## Rationale for Model Selection
 
 To determine the most effective model for **powdery mildew detection**, three different deep learning architectures were explored:
@@ -366,16 +365,145 @@ The **Cross-Industry Standard Process for Data Mining (CRISP-DM)** is a widely u
 By following **CRISP-DM**, this project ensures a structured and iterative approach to developing an **ML-based mildew detection system**. The methodology allows for **data-driven decision-making**, **scalability**, and **continuous improvement**, making it a valuable solution for large-scale farm management.
 
 ---
+## Testing
 
-## **Deployment**
+### Manual Testing Table
 
-### **Heroku Deployment**
-- **Live App:** `https://.herokuapp.com/`
-- Steps:
-  1. Create a Heroku app.
-  2. Link GitHub repo & deploy branch.
-  3. Configure **Procfile** & **requirements.txt**.
-  4. Deploy & test the live application.
+This table ensures that each **User Story & Business Requirement** is met through functionality checks on the **relevant web pages**.
+
+## 📝 Manual Testing Table
+
+| **Test Case ID** | **User Story** | **Test Scenario** | **Test Steps** | **Expected Outcome** | **Web Page** | **Result** |
+|-----------------|--------------|---------------|------------|----------------|----------|---------|
+| 1 | Visual Differentiation | Display Healthy vs. Infected Leaves | Navigate to "Leaves Visualizer" & check images | Both images are clearly shown | **Leaves Visualizer** | Pass |
+| 2 | Visual Differentiation | Mean & Standard Deviation Images | Select checkbox for Avg/Var images | Images load & show visual differences | **Leaves Visualizer** | Pass |
+| 3 | Visual Differentiation | t-Test & Heatmap | Run statistical analysis | Displayed test results & heatmap | **Leaves Visualizer** | Pass |
+| 4 | AI Prediction | Upload Image for Prediction | Upload an image to detector | AI classifies as Healthy/Infected | **Mildew Detector** | Pass |
+| 5 | AI Prediction | View Model Confidence Score | Check histogram | Confidence score displayed | **ML Performance Metrics** | Pass |
+| 6 | AI Prediction | Display Classification Report | View test report | Report shows accuracy, precision, recall | **ML Performance Metrics** | Pass |
+| 7 | AI Prediction | View Confusion Matrix | Check matrix visualization | Correct classifications shown | **ML Performance Metrics** | Pass |
+| 8 | AI Prediction | Display ROC Curve | View ROC curve | AUC score appears, indicating model performance | **ML Performance Metrics** | Pass |
+| 9 | AI Prediction | Prediction Probability Analysis | Select test image to analyze confidence score | Confidence score reflects model reliability | **Mildew Detector** | Pass |
+| 10 | Web App Usability | Upload multiple images | Upload multiple images at once | All images processed & classified | **Mildew Detector** | Pass |
+| 11 | Web App Usability | Generate Prediction Report | Download CSV | CSV file correctly saves predictions | **Mildew Detector** | Pass |
+| 12 | Web App Usability | Mobile Responsiveness | Open on mobile/tablet | Layout adjusts correctly | **All Pages** | Pass |
+| 13 | Web App Usability | Navigation Across Pages | Click between menu items | Pages load correctly | **All Pages** | Pass |
+| 14 | Web App Usability | Page Load Speed | Open web app & test performance | Pages load in under 3 seconds | **All Pages** | Pass |
+| 15 | Web App Usability | External Links & Documentation | Click README/Wikipedia links | External links open correctly | **Quick Project Summary** | Pass |
+
+
+---
+
+---
+## Deployment
+
+### Heroku Deployment for Powdery Mildew Detector
+
+This section provides step-by-step instructions to deploy the **Powdery Mildew Detector** application on **Heroku**.
+
+---
+
+### 1. Create a Heroku App
+
+1. Log in to [Heroku](https://dashboard.heroku.com/apps). If you don’t have an account, sign up.
+2. Click **"New"** → **"Create new app"**.
+3. Enter a **unique app name**.
+4. Select the region closest to your location.
+5. Click **"Create app"**.
+
+---
+
+### 2. Prepare the Project for Deployment
+
+Ensure the following files are present in the project directory:
+
+- **`requirements.txt`**  
+  Contains all the necessary dependencies.
+
+- **`Procfile`**  
+  Specifies how the application should be executed. It should include:
+  ```plaintext
+  web: sh setup.sh && streamlit run app.py
+
+### 3. Connect the GitHub Repository to Heroku
+
+1. Navigate to the **Deploy** tab in Heroku.
+2. Under **"Deployment Method"**, select **GitHub**.
+3. Click **"Connect to GitHub"** and authorize access if prompted.
+4. Search for your repository containing the **Powdery Mildew Detector** project.
+5. Click **"Connect"** to link the repository.
+
+---
+
+### 4. Deploy the Application
+
+1. Ensure all code changes are **committed and pushed** to GitHub.
+2. Under **"Manual Deploy"**, select the **main branch**.
+3. Click **"Deploy Branch"**.
+4. Wait for the **deployment to complete**.
+5. Click **"View"** to access the live web application.
+
+---
+
+### 5. Enable Automatic Deployment (Optional)
+
+1. In the **Deploy** tab, scroll to **"Automatic Deploys"**.
+2. Click **"Enable Automatic Deploys"** to allow Heroku to deploy new changes automatically.
+
+---
+
+## Forking and Cloning the Repository
+
+### Forking the Repository
+
+To create a personal copy of this project:
+
+1. Go to the **Powdery Mildew Detector GitHub Repository**.
+2. Click **"Fork"** in the top-right corner.
+
+---
+
+### Cloning the Repository
+
+To download the project to your local machine:
+
+1. Visit the **GitHub repository**.
+2. Click **"<> Code"** → **"Copy URL"**.
+3. Open a terminal and run the following command:
+   ```bash
+   git clone https://github.com/micmic210/mildew-detector.git
+
+---
+
+## Languages and Libraries Used
+
+### Languages
+- **Python**: Used for data preprocessing, model training, evaluation, and web application development.
+
+### Frameworks & Libraries
+
+#### **Machine Learning & Deep Learning**
+- [TensorFlow](https://www.tensorflow.org/): Used to build and train the CNN models for mildew detection.
+- [Keras](https://keras.io/): High-level API for designing, training, and evaluating neural networks.
+- [Scikit-learn](https://scikit-learn.org/stable/): Utilized for data preprocessing, model evaluation, and classification metrics.
+
+#### **Data Processing & Visualization**
+- [Pandas](https://pandas.pydata.org/): Used for data analysis, manipulation, and report generation.
+- [NumPy](https://numpy.org/): Assisted in handling and processing numerical data, including image arrays.
+- [Matplotlib](https://matplotlib.org/): Created static visualizations such as confusion matrices and training curves.
+- [Seaborn](https://seaborn.pydata.org/): Enhanced statistical visualization of model performance metrics.
+- [Plotly](https://plotly.com/): Provided interactive visualizations, such as PCA plots and prediction probability charts.
+
+#### **Image Processing**
+- [Pillow (PIL)](https://pypi.org/project/Pillow/): Used for loading and preprocessing images before feeding them into the model.
+- [OpenCV](https://opencv.org/): Assisted in image manipulation and feature extraction.
+
+#### **Web Application & Deployment**
+- [Streamlit](https://streamlit.io/): Built the interactive dashboard for real-time mildew detection.
+- [Heroku](https://dashboard.heroku.com/): Deployed the web application for public access.
+- [GitHub](https://github.com/): Used for version control and collaboration.
+
+These tools enabled the development, evaluation, and deployment of the **Powdery Mildew Detector**, ensuring an efficient and scalable solution.
 
 ---
 
