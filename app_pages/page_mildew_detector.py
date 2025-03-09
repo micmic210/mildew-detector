@@ -58,8 +58,14 @@ def page_mildew_detector_body():
             plot_predictions_probabilities(pred_proba, pred_class)
 
             # Store results in a dataframe
-            df_report = df_report.append(
-                {"Image Name": image.name, "Prediction": pred_class}, ignore_index=True
+            df_report = pd.concat(
+                [
+                    df_report,
+                    pd.DataFrame(
+                        [{"Image Name": image.name, "Prediction": pred_class}]
+                    ),
+                ],
+                ignore_index=True,
             )
 
         # Display and allow download of results
