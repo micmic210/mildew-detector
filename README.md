@@ -1,19 +1,23 @@
-# Mildew Detection in Cherry Leaves
+# **Mildew Detection in Cherry Leaves: A Scalable Solution**
 
-## Project Overview
+Farmy & Foods, a leading agricultural company, is facing a growing challenge in managing **powdery mildew outbreaks** in its cherry plantations. This fungal disease affects plant health and threatens the quality of one of their most valuable crops. Currently, mildew detection relies on a **manual inspection process**, where an employee spends **30 minutes per tree** collecting and analyzing leaf samples. If mildew is detected, an additional **one-minute treatment** is applied. Given that the company manages **thousands of cherry trees** across multiple farms, this manual approach is **time-consuming and not scalable**. 
 
-This project aims to solve a critical challenge faced by Farmy & Foods, an agricultural company struggling with powdery mildew detection on cherry leaves. Powdery mildew is a fungal disease that negatively impacts crop yield and quality. The current detection process is manual, requiring approximately 30 minutes per tree, making it inefficient and impractical for large-scale farming.
+To address this inefficiency, the **IT and Innovation team** has proposed an **ML-powered solution** that can instantly determine whether a cherry leaf is healthy or infected based on **image analysis**. This automated detection system aims to **significantly reduce inspection time** and, if successful, could be expanded to other crops facing similar pest and disease challenges. The dataset consists of **cherry leaf images** collected directly from Farmy & Foods' plantations, ensuring a robust foundation for model training and evaluation. 
 
-## Project Objectives
+---
 
-To address this issue, this project leverages Machine Learning (ML) and Computer Vision to develop an AI-powered Mildew Detection Dashboard with the following functionalities:
+## **Business Requirements**
+### 1. **Visual Differentiation**  
+Conduct a study to **distinguish healthy from mildew-infected leaves** through image analysis. 
 
-1. **Visual Differentiation:**
-    - Provide data visualizations to help differentiate healthy vs. mildew-infected leaves.
-2. **Automated Classification:**
-    - Build a binary classification model that predicts whether a given leaf image is healthy or infected.
+### 2. **Mildew Detection & Classification**  
+Develop an **ML model** that classifies cherry leaves based on their visual characteristics, identifying whether they are **healthy or affected by powdery mildew**.  
 
-By integrating this ML-powered tool into farm operations, Farmy & Foods can significantly reduce labor costs, improve detection accuracy, and increase crop yield.
+### 3. **Prediction Report**  
+Generate a **detailed prediction report** whenever the mildew detection model is used. This report will provide **insights into the classification results**, offering transparency and actionable data for farm management decisions.  
+
+This initiative has the potential to **streamline the disease detection process**, improve **crop health monitoring**, and **enhance decision-making efficiency** at Farmy & Foods. If successfully implemented, it could serve as a **scalable model for other agricultural applications**.
+
 
 ---
 
@@ -26,14 +30,6 @@ The dataset contains images of cherry leaves categorized into two classes:
 - **Dataset Source**: [Cherry Leaves Dataset](https://www.kaggle.com/codeinstitute/cherry-leaves)
 - **Dataset Size**: 4208 images
 
----
-
-## Business Requirements
-
-1. **Visual Differentiation:**
-    - Conduct a study to distinguish healthy from mildew-infected leaves.
-2. **Mildew Detection & Classification:**
-    - Develop an ML model that classifies cherry leaves based on image analysis.
 
 ---
 
@@ -106,6 +102,16 @@ A well-calibrated CNN model should provide **high confidence scores for correct 
 - If overconfidence is detected in misclassified images, adjustments such as **calibrating confidence scores or fine-tuning probability thresholds** may be required.  
 
 ---
+## The Rationale to Map Business Requirements to Data Visualizations and ML Tasks  
+
+| **Business Requirement**             | **Data Visualization & ML Task**                                                                                           |
+|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Visual Differentiation**          | - Compute **mean & standard deviation images**.  <br>- Generate **image montages**.  <br>- Compare **histogram distributions** of healthy vs. infected leaves.  |
+| **Mildew Detection**                 | - Train a **CNN classifier** with optimized hyperparameters.  <br>- Deploy a **Streamlit dashboard** for real-time classification. |
+
+
+---
+
 
 ## Data Processing Pipeline
 
@@ -136,17 +142,6 @@ A well-calibrated CNN model should provide **high confidence scores for correct 
 - **Outputs:**
   - Best-performing model selected based on cross-validation.
   - Confusion Matrix, Learning Curve, and Classification Report.
-
----
-
-## The Rationale to Map Business Requirements to Data Visualizations and ML Tasks  
-
-| **Business Requirement**             | **Data Visualization & ML Task**                                                                                           |
-|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| **Visual Differentiation**          | - Compute **mean & standard deviation images**.  <br>- Generate **image montages**.  <br>- Compare **histogram distributions** of healthy vs. infected leaves.  |
-| **Mildew Detection**                 | - Train a **CNN classifier** with optimized hyperparameters.  <br>- Deploy a **Streamlit dashboard** for real-time classification. |
-
----
 
 ---
 
