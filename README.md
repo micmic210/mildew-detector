@@ -459,6 +459,23 @@ For detailed test results, please refer to **[TEST_RESULTS.md](TEST_RESULTS.md)*
 
 ## **Bugs**
 
+
+### 1. **Issue: ModuleNotFoundError: No module named 'src'**
+   - **Cause:** The test script couldn’t locate the `src` directory because it wasn’t properly recognized as a package.  
+   - **Fix:** Added an empty `__init__.py` file inside the `src` folder and used `pytest.ini` to set `PYTHONPATH`.
+
+### 2. **Issue: Shape Mismatch in Image Resizing Function (AssertionError)**
+   - **Cause:** The `resize_input_image()` function was returning an incorrect shape `(1, 128, 128, 3)` instead of `(128, 128, 3)`.  
+   - **Fix:** Adjusted the function to correctly reshape the image, removing unnecessary batch dimensions.
+
+### 3. **Issue: Model Prediction Error (ValueError: Invalid input shape)**
+   - **Cause:** The model expected an input shape of `(None, 128, 128, 3)`, but received `(32, 128, 3)`.  
+   - **Fix:** Ensured that the test input was reshaped correctly before being passed to the model.
+
+### 4. **Issue: CSV Download Format Mismatch in `download_dataframe_as_csv()`**
+   - **Cause:** The test expected the output to start with `"data:text/csv"`, but it was actually `"data:file/csv"`.  
+   - **Fix:** Updated the test case to match the actual output format.
+
 ---
 
 ## **Deployment**
