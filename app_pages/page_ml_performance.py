@@ -99,13 +99,8 @@ def page_ml_performance_metrics():
             with col2:
                 st.info(
                     f"**PCA Insights:**\n"
-                    f"- PCA reduces high-dimensional image data into "
-                    f"a **2D representation**.\n"
-                    f"- Each dot represents a **sample leaf** from the dataset.\n"
-                    f"- **Healthy (dark blue)** and **Infected (light blue)** "
-                    f"samples should ideally form separate clusters.\n"
-                    f"- If **overlapping occurs**, it suggests that more "
-                    f"feature extraction may be needed."
+                    f"- The PCA visualization shows that while there is some separation between Healthy and Infected leaves, the classes are not entirely distinct. \n"
+                    f"- This suggests that while pixel-level differences exist, additional features or transformations may be required to improve class separability for machine learning classification. \n"
                 )
 
     st.write(f"---")
@@ -166,13 +161,8 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Classification Report Insights:**\n"
-                f"- Precision, Recall, and F1-Score should be **high and "
-                f"consistent** across train and test sets.\n"
-                f"- A significant drop in test performance may indicate "
-                f"**overfitting**, meaning the model memorized training "
-                f"data but struggles with unseen data.\n"
-                f"- A balanced model should have a **small difference** "
-                f"between train and test scores."
+                f"- The **train set classification report** shows a balanced precision, recall, and F1-score, indicating that the model effectively learns from training data.\n"
+                f"- The **test set classification report** confirms strong generalization, with nearly identical metrics across both classes, ensuring reliable performance on unseen data.\n"
             )
 
     st.write(f"---")
@@ -202,18 +192,16 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Confusion Matrix Insights:**\n"
-                f"- **True Positives (TP) & True Negatives (TN):** "
-                f"Correctly classified samples.\n"
-                f"- **False Positives (FP) & False Negatives (FN):** "
-                f"Misclassified samples.\n"
-                f"- A high **FN rate** suggests the model struggles "
-                f"to detect infections.\n"
-                f"- Ideally, TP and TN should be high, while FP and FN "
-                f"should be low."
+                f"Train Set Confusion Matrix\n"
+                f"- The model demonstrates **high accuracy** but shows **some misclassification** between Healthy and Infected leaves.\n "
+                f"- The model demonstrates **high accuracy** but shows **some misclassification** between Healthy and Infected leaves.\n "
+                f"Test Set Confusion Matrix\n"
+                f"- The model performs **exceptionally well** on the test set, with **only 2 misclassified samples**..\n "
+                f"- **No false negatives** for Healthy leaves and **only 2 false positives** for Infected leaves suggest **strong generalization**.\n "
+                f"- **The model is **ready for deployment**, showing robust classification performance.**.\n "
             )
 
     st.write(f"---")
-
 
     # Model Learning Curves (Accuracy & Loss)
     st.write(f"### Model Training Performance")
@@ -240,12 +228,9 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Learning Curve Insights:**\n"
-                f"- The **Loss Curve** should steadily decrease, indicating "
-                f"the model is learning correctly.\n"
-                f"- The **Accuracy Curve** should increase and stabilize, "
-                f"with minimal overfitting.\n"
-                f"- Large gaps between **training and validation curves** "
-                f"suggest **overfitting** and should be minimized."
+                f"- **Accuracy Curve** → Both training and validation accuracy improved steadily, converging above **99%**, indicating strong model performance.\n"
+                f"- **Loss Curve** → The model’s loss consistently decreased for both training and validation sets, suggesting effective learning without severe overfitting.  \n"
+                f"- **Generalization** → The small gap between training and validation curves suggests **good generalization**, with the model maintaining high performance on unseen data.  \n"
             )
 
     st.write(f"---")
@@ -264,12 +249,9 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Histogram Insights:**\n"
-                f"- The histogram represents the model's confidence "
-                f"in its predictions.\n"
-                f"- Ideally, predictions should be **clearly separated** "
-                f"at the 0.5 probability threshold.\n"
-                f"- **Overlapping regions** indicate uncertainty in "
-                f"classifications, which may suggest further model tuning."
+                f"- **Well-Separated Predictions** → The model confidently classifies most samples with probabilities near **0 or 1**, indicating strong decision boundaries.\n"
+                f"- **Minimal Ambiguity** → Very few predictions fall near the **0.5 threshold**, suggesting high confidence in classifications.  \n"
+                f"- **Healthy vs. Infected Separation** → The distinct peaks for **Healthy (green)** and **Infected (blue)** classes confirm that the model effectively differentiates between them. \n"
             )
 
     st.write(f"---")
@@ -284,12 +266,9 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**ROC Curve Insights:**\n"
-                f"- The **AUC score** (Area Under Curve) measures the "
-                f"model’s ability to separate classes.\n"
-                f"- A value close to **1.0** indicates excellent performance, "
-                f"while a value near **0.5** suggests poor discrimination.\n"
-                f"- A well-performing model should have an AUC "
-                f"**greater than 0.90**."
+                f"- **Train AUC (0.48) vs. Test AUC (1.00)**: The model achieves **perfect discrimination on the test set** but struggles on the training set, suggesting potential data imbalance or overfitting. \n"
+                f"- **Ideal Test Performance**: AUC = 1.00 on the test set indicates that the model can **perfectly distinguish between healthy and infected leaves** in real-world applications. \n"
+                f"- **Training Performance Concerns**: The low AUC on the training set might indicate that the model did not generalize well during training, and further investigation into dataset distribution or potential regularization techniques may be needed. \n"
             )
 
     st.write(f"---")
