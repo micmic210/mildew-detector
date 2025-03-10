@@ -1,4 +1,5 @@
 # **Mildew Detection in Cherry Leaves: A Scalable Solution**
+---
 
 Farmy & Foods, a leading agricultural company, is facing a growing challenge in managing **powdery mildew outbreaks** in its cherry plantations. This fungal disease affects plant health and threatens the quality of one of their most valuable crops. Currently, mildew detection relies on a **manual inspection process**, where an employee spends **30 minutes per tree** collecting and analyzing leaf samples. If mildew is detected, an additional **one-minute treatment** is applied. Given that the company manages **thousands of cherry trees** across multiple farms, this manual approach is **time-consuming and not scalable**. 
 
@@ -20,7 +21,36 @@ This initiative has the potential to **streamline the disease detection process*
 
 ---
 
-## Dataset Content
+## **ML Business Case**
+
+### **1. Problem Statement**  
+Farmy & Foods, a leading agricultural company, faces challenges in managing **powdery mildew outbreaks** in its cherry plantations. Currently, mildew detection relies on **manual inspection**, requiring **30 minutes per tree**, which is **time-consuming and impractical** for large-scale farming. Inefficient detection delays treatment, impacting **crop yield and quality**.
+
+### **2. Business Objectives**  
+The goal is to develop an **ML-powered detection system** that:  
+- **Reduces inspection time** by automating mildew detection through **image analysis**.  
+- **Improves accuracy** compared to manual assessments.  
+- **Enables scalability** for monitoring thousands of cherry trees across multiple farms.  
+- **Enhances decision-making** with automated prediction reports for farm management.
+
+### **3. ML Solution**  
+A **Convolutional Neural Network (CNN)-based classifier** is trained to distinguish between **healthy** and **mildew-infected** cherry leaves. The system will:  
+- Accept **leaf images** as input.  
+- Classify them as **healthy or infected** with high confidence.  
+- Generate a **detailed prediction report**, offering insights into the classification results.
+
+### **4. ROI & Feasibility**  
+- **Time Savings:** Automating inspections could **reduce manual effort by over 90%**, allowing faster and more frequent assessments.  
+- **Cost Efficiency:** Lower labor costs by minimizing human intervention.  
+- **Scalability:** The model can be **extended to other crops** facing similar disease challenges.  
+- **Data-Driven Decision Making:** Prediction reports enhance **farm management efficiency** and early intervention strategies.
+
+### **Conclusion**  
+By integrating ML into farm operations, Farmy & Foods can **streamline disease detection, enhance productivity, and improve crop quality**, ensuring a **sustainable and efficient agricultural process**. If successful, this solution can be **expanded beyond cherry trees** to optimize pest and disease management across multiple crops.
+
+---
+
+## **Dataset Content**
 
 The dataset contains images of cherry leaves categorized into two classes:
 - **Healthy leaves**
@@ -31,24 +61,26 @@ The dataset contains images of cherry leaves categorized into two classes:
 
 ---
 
+## **Hypothesis and Validation** 
+
 ### **Hypothesis 1: Visual Differences Exist**  
 **Statement:**  
 - Healthy cherry leaves have a **uniform texture and consistent brightness**.  
 - Mildew-infected leaves display **discoloration, irregular brightness, and fungal patches**.  
 
-#### **Validation Method**  
+### **Validation Method**  
 | **Method** | **Reasoning** | **Success Criteria** |
 |------------|-------------|-----------------|
 | **Mean & Standard Deviation Images** | Compare overall color and texture patterns in both classes. | Observable color/texture differences. |
 | **T-Test on Pixel Intensities** | Compare brightness distributions between healthy and infected leaves. If p-value < 0.05, differences are statistically significant. | **p < 0.05** confirms that brightness is a distinguishing factor. |
 | **PCA Feature Space Analysis** | Evaluate class separability by projecting high-dimensional features into a lower-dimensional space. | Clear clustering of Healthy vs. Infected leaves in PCA visualization. |
 
-#### **Findings**  
+### **Findings**  
 - The **mean image of mildew-infected leaves** shows **lighter patches and uneven coloration** compared to healthy leaves.  
 - **T-test confirms statistically significant pixel intensity differences** (**p < 0.05**) between classes.  
 - **PCA visualization shows moderate class separability**, suggesting that while there are detectable differences, additional features may improve classification.  
 
-#### **Conclusion**  
+### **Conclusion**  
 - **Hypothesis 1 is supported by statistical evidence** (**T-test and PCA analysis**).  
 - **Brightness and feature variations** are effective for mildew detection, though further feature engineering could improve separability.  
 
@@ -58,14 +90,14 @@ The dataset contains images of cherry leaves categorized into two classes:
 **Statement:**  
 A well-trained CNN model can **classify cherry leaves** with **≥90% accuracy**, making the detection process **scalable and reliable**.
 
-#### Validation Method  
+### Validation Method  
 | Method | Reasoning | Success Criteria |
 |--------|----------|-----------------|
 | **Train CNN Model & Evaluate Performance** | Assess CNN classification performance with accuracy, F1-score, precision, recall. | Accuracy ≥ 90%, High recall for infected leaves. |
 | **Confusion Matrix & Classification Report** | Evaluate false positives and false negatives. If recall is low, model tuning is needed. | Recall ≥ 85% for infected leaves. |
 | **ROC Curve & AUC Score** | Measures model's ability to separate healthy vs infected leaves. Higher AUC = better model. | AUC ≥ 0.90. |
 
-#### Findings  
+### Findings  
 - CNN model achieves **X% accuracy** (replace with real value).  
 - **Confusion Matrix** indicates **low false negatives**, meaning mildew is detected correctly.  
 - **ROC Curve shows AUC of Y** (replace with real value) → model performs well.  
@@ -100,46 +132,216 @@ A well-calibrated CNN model should provide **high confidence scores for correct 
 - If overconfidence is detected in misclassified images, adjustments such as **calibrating confidence scores or fine-tuning probability thresholds** may be required.  
 
 ---
-## The Rationale to Map Business Requirements to Data Visualizations and ML Tasks  
 
-| **Business Requirement**             | **Data Visualization & ML Task**                                                                                           |
-|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| **Visual Differentiation**          | - Compute **mean & standard deviation images**.  <br>- Generate **image montages**.  <br>- Compare **histogram distributions** of healthy vs. infected leaves.  |
-| **Mildew Detection**                 | - Train a **CNN classifier** with optimized hyperparameters.  <br>- Deploy a **Streamlit dashboard** for real-time classification. |
+## **Rationale to Map Business Requirements**  
+
+### **Business Requirement 1: Visual Differentiation → Data Preprocessing & Visualization**
+**Objective:**  
+To **distinguish healthy from mildew-infected leaves** using image analysis.
+
+**ML & Data Visualization Tasks:**  
+- **Data Preprocessing:** Image normalization, augmentation, and resizing to ensure consistency.  
+- **Feature Exploration:** PCA was used to check feature separability between healthy and infected leaves.  
+- **Dataset Balancing:** Verified class distribution to avoid biased learning.  
+- **Confusion Matrix & Classification Report (on train/validation sets):** Assessed misclassification trends before model selection.
+
+**Impact:** Ensured the dataset was **visually and statistically robust** for effective classification.
 
 ---
 
-## **ML Business Case: Powdery Mildew Detector**
+### **Business Requirement 2: Mildew Detection & Classification → ML Model Selection & Evaluation**
+**Objective:**  
+Develop an **ML model** to classify cherry leaves as **healthy or mildew-infected**.
 
-### **1. Problem Statement**  
-Farmy & Foods, a leading agricultural company, faces challenges in managing **powdery mildew outbreaks** in its cherry plantations. Currently, mildew detection relies on **manual inspection**, requiring **30 minutes per tree**, which is **time-consuming and impractical** for large-scale farming. Inefficient detection delays treatment, impacting **crop yield and quality**.
+**ML & Data Visualization Tasks:**  
+- **Model Testing:** Compared **Sigmoid, Softmax, and MobileNetV2** CNN architectures.  
+- **Performance Metrics:** Tracked accuracy, precision, recall, F1-score, and ROC curves.  
+- **Overfitting Analysis:** Compared training vs. validation accuracy/loss to detect generalization issues.  
+- **Model Selection:** **Softmax 3** was chosen based on **high accuracy, fast inference, and low computational cost**.
 
-### **2. Business Objectives**  
-The goal is to develop an **ML-powered detection system** that:  
-- **Reduces inspection time** by automating mildew detection through **image analysis**.  
-- **Improves accuracy** compared to manual assessments.  
-- **Enables scalability** for monitoring thousands of cherry trees across multiple farms.  
-- **Enhances decision-making** with automated prediction reports for farm management.
+**Impact:** Delivered a **high-performing and efficient model** that meets real-world farming needs.
 
-### **3. ML Solution**  
-A **Convolutional Neural Network (CNN)-based classifier** is trained to distinguish between **healthy** and **mildew-infected** cherry leaves. The system will:  
-- Accept **leaf images** as input.  
-- Classify them as **healthy or infected** with high confidence.  
-- Generate a **detailed prediction report**, offering insights into the classification results.
+---
 
-### **4. ROI & Feasibility**  
-- **Time Savings:** Automating inspections could **reduce manual effort by over 90%**, allowing faster and more frequent assessments.  
-- **Cost Efficiency:** Lower labor costs by minimizing human intervention.  
-- **Scalability:** The model can be **extended to other crops** facing similar disease challenges.  
-- **Data-Driven Decision Making:** Prediction reports enhance **farm management efficiency** and early intervention strategies.
+### **Business Requirement 3: Prediction Report → Model Deployment & Transparency**
+**Objective:**  
+Provide **detailed, interpretable reports** to aid farm management decisions.
+
+**ML & Data Visualization Tasks:**  
+- **Prediction Reports:** Generated class labels, confidence scores, and misclassification insights.  
+- **Confusion Matrix (on test set):** Evaluated real-world model reliability.  
+- **Performance Monitoring:** Ensured sustained accuracy and consistency in deployment.
+
+**Impact:** The model provides **transparent, actionable insights** for stakeholders.
+
+### **Final Justification**
+Each **data visualization and ML task** was mapped to the **business requirements**:
+- **Preprocessing & visualization** ensured **data quality**.  
+- **Model selection & evaluation** ensured **accurate mildew detection**.  
+- **Performance monitoring & reporting** ensured **trustworthy deployment**.  
+
+---
+
+## **User Stories & Acceptance Criteria**
+
+### **User Story 1: Visual Differentiation of Healthy & Infected Leaves**
+**As a** Researcher / Client  
+**I want to** understand **key differences between healthy & infected leaves**  
+**So that** I can **improve manual detection**.  
+
+#### **Acceptance Criteria**
+- Display **Mean & Standard Deviation images**.
+- Conduct **t-Square test & display heatmaps**.
+
+---
+
+### **User Story 2: AI-Powered Disease Prediction**
+**As a** Farmer / Agricultural Inspector  
+**I want to** use **AI to classify cherry leaves instantly**  
+**So that** I can **reduce manual labor & improve efficiency**.  
+
+#### **Acceptance Criteria**
+- Train **CNN model (≥90% accuracy)**.
+- Display **Confusion Matrix, Classification Report**.
+- Implement **Saliency Map for explainability**.
+
+---
+
+### **User Story 3: Simple & User-Friendly Web App**
+**As a** Field Worker / IT Specialist  
+**I want to** use a **web-based tool for real-time mildew detection**  
+**So that** I can **upload images & get instant results**.  
+
+#### **Acceptance Criteria**
+- Build **Streamlit app with easy image upload**.
+- Display **real-time AI predictions & confidence scores**.
+- Deploy on **Heroku for global access**.
+
+---
+
+### **User Story 4: Confidence Score Analysis for Model Reliability**  
+**As a** Researcher / Agricultural Consultant  
+**I want to** analyze the **confidence levels** of the AI model for each prediction  
+**So that** I can **assess its reliability** and identify **potential misclassifications**.  
+
+#### **Acceptance Criteria**  
+- Display **Prediction Probability Histogram** to show the overall distribution of confidence scores.  
+- Allow users to **select test images** and view their **confidence scores**.  
+- Ensure **misclassified images have lower confidence** than correct classifications.  
+- Provide a **summary of confidence trends** to support business decisions.  
+
+---
+
+## Dashboard Design 
+
+### Page 1: Quick Project Summary
+This page provides an **overview** of the project, highlighting the challenge of **powdery mildew detection** in cherry plantations. It introduces the **ML-powered solution** proposed by Farmy & Foods' IT team and outlines the **business requirements** driving the project.  
+
+#### **Contents:**
+- Introduction to the problem and the need for automation  
+- Visual examples of **healthy vs. mildew-infected cherry leaves**  
+- **Business requirements** detailing key objectives  
+- **Project dataset information** including data source and purpose  
+- External references for additional reading  
+
+![Quick Project Summary](../mildew-detector/assets/summary.webp)
+
+---
+
+### Page 2: Leaves Visualizer
+This page helps users **understand the visual differences** between healthy and mildew-infected leaves before applying machine learning. It explores **image-based characteristics** through average images, variability analysis, and montages of sample leaves.  
+
+#### **Contents:**
+- Visualizations of **Healthy vs. Infected leaves**  
+- **Mean and standard deviation images** to compare patterns  
+- **Difference analysis** highlighting key distinctions  
+- **Image montage feature** for dataset exploration  
+
+![Leaves Visualizer](../mildew-detector/assets/leaves_visualizer.webp)
+
+---
+
+### Page 3: Mildew Detector
+This page allows users to **upload cherry leaf images** and determine whether they are **healthy or infected** using the trained machine learning model. It also provides a **detailed prediction report** that can be downloaded for further analysis.  
+
+#### **Contents:**
+- Upload section for **leaf images (JPG, PNG, etc.)**  
+- **Real-time prediction results** with confidence scores  
+- **Visualization of model confidence levels**  
+- **Downloadable CSV report** for record-keeping  
+
+![Mildew Detector](../mildew-detector/assets/mildew-detector.webp)
+
+---
+
+### Page 4: Project Hypothesis
+This page presents the **hypotheses and validation methods** used in the project. It evaluates whether **visual differences** exist between healthy and infected leaves and how effectively an **ML model** can classify them.  
+
+#### **Contents:**
+- **Hypothesis 1:** Do visual differences exist?  
+- **Hypothesis 2:** Can ML accurately classify leaves?  
+- **Hypothesis 3:** Do confidence scores indicate reliability?  
+- **Validation methods and findings** for each hypothesis  
+
+![Project Hypothesis](../mildew-detector/assets/project_hypothesis.webp)
+
+---
+
+### Page 5: ML Performance Metrics
+This page showcases the **performance evaluation** of the trained ML model. It includes **key metrics, visualizations, and insights** to assess the model’s effectiveness and reliability.  
+
+#### **Contents:**
+- **Dataset distribution** and **PCA visualization**  
+- **Classification reports** (train vs. test)  
+- **Confusion matrix** to examine prediction errors  
+- **Training curves** (accuracy & loss) for model learning analysis  
+- **ROC curve & prediction probability histogram**  
+- **Final model performance summary**  
+
+![ML Performance Metrics](../mildew-detector/assets/ml_performance.webp)
+
+---
+
+## **Methodology: CRISP-DM Approach**
+
+The **Cross-Industry Standard Process for Data Mining (CRISP-DM)** is a widely used methodology for structuring machine learning projects. This project follows the **CRISP-DM framework** to ensure a systematic and iterative approach to developing the **Powdery Mildew Detector**.
+
+### **1. Business Understanding**  
+- Identified the problem of **manual and time-consuming** mildew detection in cherry plantations.  
+- Defined key **business objectives**: automate mildew detection, improve efficiency, and generate prediction reports.  
+- Established **success criteria** based on model performance and impact on farm operations.
+
+### **2. Data Understanding**  
+- Acquired a **cherry leaf image dataset** from **Farmy & Foods**.  
+- Explored the dataset through **image visualization and statistical analysis** to understand differences between **healthy** and **mildew-infected** leaves.  
+- Conducted **PCA analysis** to check for class separability.
+
+### **3. Data Preparation**  
+- Preprocessed the dataset by **resizing, normalizing, and augmenting** images to improve model generalization.  
+- Split the dataset into **Training (70%)**, **Validation (10%)**, and **Test (20%)** sets to ensure fair model evaluation.  
+- Applied **image enhancement techniques** to improve disease visibility.
+
+### **4. Modeling**  
+- Developed a **Convolutional Neural Network (CNN)** to classify **healthy vs. infected** leaves.  
+- Experimented with **different architectures and hyperparameters** to optimize performance.  
+- Evaluated models using **accuracy, loss curves, confusion matrix, and ROC-AUC score**.
+
+### **5. Evaluation**  
+- Assessed model performance on the **test dataset** to verify its generalization ability.  
+- Generated **classification reports, confusion matrices, and probability histograms** to analyze predictions.  
+- Compared model results against **business success criteria** (e.g., accuracy ≥90%).
+
+### **6. Deployment & Monitoring**  
+- Deployed the trained model into a **Streamlit web application** for real-time mildew detection.  
+- Integrated a **prediction report feature** to provide detailed classification insights.  
+- Established a plan for **continuous monitoring** and **model improvement** based on user feedback and new data.
 
 ### **Conclusion**  
-By integrating ML into farm operations, Farmy & Foods can **streamline disease detection, enhance productivity, and improve crop quality**, ensuring a **sustainable and efficient agricultural process**. If successful, this solution can be **expanded beyond cherry trees** to optimize pest and disease management across multiple crops.
-
+By following **CRISP-DM**, this project ensures a structured and iterative approach to developing an **ML-based mildew detection system**. The methodology allows for **data-driven decision-making**, **scalability**, and **continuous improvement**, making it a valuable solution for large-scale farm management.
 
 ---
 
-## Rationale for Model Selection
+## **Rationale for Model Selection**
 
 To determine the most effective model for **powdery mildew detection**, three different deep learning architectures were explored:
 
@@ -176,7 +378,7 @@ To determine the most effective model for **powdery mildew detection**, three di
 
 ---
 
-## Model Creation
+## **Model Creation**
 
 The **Softmax-Based CNN model** was constructed with a **deep learning pipeline** optimized for image classification. Below is an overview of the architecture:
 
@@ -227,181 +429,20 @@ The **Softmax CNN model** was selected as the **best-performing architecture**, 
 
 ---
 
-## User Stories & Acceptance Criteria
+## **Testing**
 
-### **User Story 1: Visual Differentiation of Healthy & Infected Leaves**
-**As a** Researcher / Client  
-**I want to** understand **key differences between healthy & infected leaves**  
-**So that** I can **improve manual detection**.  
-
-#### **Acceptance Criteria**
-- Display **Mean & Standard Deviation images**.
-- Conduct **t-Square test & display heatmaps**.
+The model was tested using **both manual testing and automated tests with pytest** to ensure reliability and performance.  
+For detailed test results, please refer to **[TEST_RESULTS.md](//TEST_RESULTS.md)**.
 
 ---
 
-### **User Story 2: AI-Powered Disease Prediction**
-**As a** Farmer / Agricultural Inspector  
-**I want to** use **AI to classify cherry leaves instantly**  
-**So that** I can **reduce manual labor & improve efficiency**.  
-
-#### **Acceptance Criteria**
-- Train **CNN model (≥90% accuracy)**.
-- Display **Confusion Matrix, Classification Report**.
-- Implement **Saliency Map for explainability**.
+## **Bugs**
 
 ---
 
-### **User Story 3: Simple & User-Friendly Web App**
-**As a** Field Worker / IT Specialist  
-**I want to** use a **web-based tool for real-time mildew detection**  
-**So that** I can **upload images & get instant results**.  
-
-#### **Acceptance Criteria**
-- Build **Streamlit app with easy image upload**.
-- Display **real-time AI predictions & confidence scores**.
-- Deploy on **Heroku for global access**.
-
----
-### **User Story 4: Confidence Score Analysis for Model Reliability**  
-**As a** Researcher / Agricultural Consultant  
-**I want to** analyze the **confidence levels** of the AI model for each prediction  
-**So that** I can **assess its reliability** and identify **potential misclassifications**.  
-
-#### **Acceptance Criteria**  
-- Display **Prediction Probability Histogram** to show the overall distribution of confidence scores.  
-- Allow users to **select test images** and view their **confidence scores**.  
-- Ensure **misclassified images have lower confidence** than correct classifications.  
-- Provide a **summary of confidence trends** to support business decisions.  
-
----
-
-## Dashboard Design 
-
-### Page 1: Quick Project Summary
-This page provides an **overview** of the project, highlighting the challenge of **powdery mildew detection** in cherry plantations. It introduces the **ML-powered solution** proposed by Farmy & Foods' IT team and outlines the **business requirements** driving the project.  
-
-#### **Contents:**
-- Introduction to the problem and the need for automation  
-- Visual examples of **healthy vs. mildew-infected cherry leaves**  
-- **Business requirements** detailing key objectives  
-- **Project dataset information** including data source and purpose  
-- External references for additional reading  
-
-### Page 2: Leaves Visualizer
-This page helps users **understand the visual differences** between healthy and mildew-infected leaves before applying machine learning. It explores **image-based characteristics** through average images, variability analysis, and montages of sample leaves.  
-
-#### **Contents:**
-- Visualizations of **Healthy vs. Infected leaves**  
-- **Mean and standard deviation images** to compare patterns  
-- **Difference analysis** highlighting key distinctions  
-- **Image montage feature** for dataset exploration  
-
-### Page 3: Mildew Detector
-This page allows users to **upload cherry leaf images** and determine whether they are **healthy or infected** using the trained machine learning model. It also provides a **detailed prediction report** that can be downloaded for further analysis.  
-
-#### **Contents:**
-- Upload section for **leaf images (JPG, PNG, etc.)**  
-- **Real-time prediction results** with confidence scores  
-- **Visualization of model confidence levels**  
-- **Downloadable CSV report** for record-keeping  
-
-### Page 4: Project Hypothesis
-This page presents the **hypotheses and validation methods** used in the project. It evaluates whether **visual differences** exist between healthy and infected leaves and how effectively an **ML model** can classify them.  
-
-#### **Contents:**
-- **Hypothesis 1:** Do visual differences exist?  
-- **Hypothesis 2:** Can ML accurately classify leaves?  
-- **Hypothesis 3:** Do confidence scores indicate reliability?  
-- **Validation methods and findings** for each hypothesis  
-
-### Page 5: ML Performance Metrics
-This page showcases the **performance evaluation** of the trained ML model. It includes **key metrics, visualizations, and insights** to assess the model’s effectiveness and reliability.  
-
-#### **Contents:**
-- **Dataset distribution** and **PCA visualization**  
-- **Classification reports** (train vs. test)  
-- **Confusion matrix** to examine prediction errors  
-- **Training curves** (accuracy & loss) for model learning analysis  
-- **ROC curve & prediction probability histogram**  
-- **Final model performance summary**  
-
----
-## **Methodology: CRISP-DM Approach**
-
-The **Cross-Industry Standard Process for Data Mining (CRISP-DM)** is a widely used methodology for structuring machine learning projects. This project follows the **CRISP-DM framework** to ensure a systematic and iterative approach to developing the **Powdery Mildew Detector**.
-
-### **1. Business Understanding**  
-- Identified the problem of **manual and time-consuming** mildew detection in cherry plantations.  
-- Defined key **business objectives**: automate mildew detection, improve efficiency, and generate prediction reports.  
-- Established **success criteria** based on model performance and impact on farm operations.
-
-### **2. Data Understanding**  
-- Acquired a **cherry leaf image dataset** from **Farmy & Foods**.  
-- Explored the dataset through **image visualization and statistical analysis** to understand differences between **healthy** and **mildew-infected** leaves.  
-- Conducted **PCA analysis** to check for class separability.
-
-### **3. Data Preparation**  
-- Preprocessed the dataset by **resizing, normalizing, and augmenting** images to improve model generalization.  
-- Split the dataset into **Training (70%)**, **Validation (10%)**, and **Test (20%)** sets to ensure fair model evaluation.  
-- Applied **image enhancement techniques** to improve disease visibility.
-
-### **4. Modeling**  
-- Developed a **Convolutional Neural Network (CNN)** to classify **healthy vs. infected** leaves.  
-- Experimented with **different architectures and hyperparameters** to optimize performance.  
-- Evaluated models using **accuracy, loss curves, confusion matrix, and ROC-AUC score**.
-
-### **5. Evaluation**  
-- Assessed model performance on the **test dataset** to verify its generalization ability.  
-- Generated **classification reports, confusion matrices, and probability histograms** to analyze predictions.  
-- Compared model results against **business success criteria** (e.g., accuracy ≥90%).
-
-### **6. Deployment & Monitoring**  
-- Deployed the trained model into a **Streamlit web application** for real-time mildew detection.  
-- Integrated a **prediction report feature** to provide detailed classification insights.  
-- Established a plan for **continuous monitoring** and **model improvement** based on user feedback and new data.
-
-### **Conclusion**  
-By following **CRISP-DM**, this project ensures a structured and iterative approach to developing an **ML-based mildew detection system**. The methodology allows for **data-driven decision-making**, **scalability**, and **continuous improvement**, making it a valuable solution for large-scale farm management.
-
----
-## Testing
-
-### Manual Testing Table
-
-This table ensures that each **User Story & Business Requirement** is met through functionality checks on the **relevant web pages**.
-
-## 📝 Manual Testing Table
-
-| **Test Case ID** | **User Story** | **Test Scenario** | **Test Steps** | **Expected Outcome** | **Web Page** | **Result** |
-|-----------------|--------------|---------------|------------|----------------|----------|---------|
-| 1 | Visual Differentiation | Display Healthy vs. Infected Leaves | Navigate to "Leaves Visualizer" & check images | Both images are clearly shown | **Leaves Visualizer** | Pass |
-| 2 | Visual Differentiation | Mean & Standard Deviation Images | Select checkbox for Avg/Var images | Images load & show visual differences | **Leaves Visualizer** | Pass |
-| 3 | Visual Differentiation | t-Test & Heatmap | Run statistical analysis | Displayed test results & heatmap | **Leaves Visualizer** | Pass |
-| 4 | AI Prediction | Upload Image for Prediction | Upload an image to detector | AI classifies as Healthy/Infected | **Mildew Detector** | Pass |
-| 5 | AI Prediction | View Model Confidence Score | Check histogram | Confidence score displayed | **ML Performance Metrics** | Pass |
-| 6 | AI Prediction | Display Classification Report | View test report | Report shows accuracy, precision, recall | **ML Performance Metrics** | Pass |
-| 7 | AI Prediction | View Confusion Matrix | Check matrix visualization | Correct classifications shown | **ML Performance Metrics** | Pass |
-| 8 | AI Prediction | Display ROC Curve | View ROC curve | AUC score appears, indicating model performance | **ML Performance Metrics** | Pass |
-| 9 | AI Prediction | Prediction Probability Analysis | Select test image to analyze confidence score | Confidence score reflects model reliability | **Mildew Detector** | Pass |
-| 10 | Web App Usability | Upload multiple images | Upload multiple images at once | All images processed & classified | **Mildew Detector** | Pass |
-| 11 | Web App Usability | Generate Prediction Report | Download CSV | CSV file correctly saves predictions | **Mildew Detector** | Pass |
-| 12 | Web App Usability | Mobile Responsiveness | Open on mobile/tablet | Layout adjusts correctly | **All Pages** | Pass |
-| 13 | Web App Usability | Navigation Across Pages | Click between menu items | Pages load correctly | **All Pages** | Pass |
-| 14 | Web App Usability | Page Load Speed | Open web app & test performance | Pages load in under 3 seconds | **All Pages** | Pass |
-| 15 | Web App Usability | External Links & Documentation | Click README/Wikipedia links | External links open correctly | **Quick Project Summary** | Pass |
-
-
----
-
----
-## Deployment
+## **Deployment**
 
 ### Heroku Deployment for Powdery Mildew Detector
-
-This section provides step-by-step instructions to deploy the **Powdery Mildew Detector** application on **Heroku**.
-
----
 
 ### 1. Create a Heroku App
 
@@ -410,8 +451,6 @@ This section provides step-by-step instructions to deploy the **Powdery Mildew D
 3. Enter a **unique app name**.
 4. Select the region closest to your location.
 5. Click **"Create app"**.
-
----
 
 ### 2. Prepare the Project for Deployment
 
@@ -433,8 +472,6 @@ Ensure the following files are present in the project directory:
 4. Search for your repository containing the **Powdery Mildew Detector** project.
 5. Click **"Connect"** to link the repository.
 
----
-
 ### 4. Deploy the Application
 
 1. Ensure all code changes are **committed and pushed** to GitHub.
@@ -442,7 +479,6 @@ Ensure the following files are present in the project directory:
 3. Click **"Deploy Branch"**.
 4. Wait for the **deployment to complete**.
 5. Click **"View"** to access the live web application.
-
 
 ---
 
@@ -454,8 +490,6 @@ To create a personal copy of this project:
 
 1. Go to the **Powdery Mildew Detector GitHub Repository**.
 2. Click **"Fork"** in the top-right corner.
-
----
 
 ### Cloning the Repository
 
@@ -469,7 +503,7 @@ To download the project to your local machine:
 
 ---
 
-## Languages and Libraries Used
+## **Languages and Libraries**
 
 ### Languages
 - **Python**: Used for data preprocessing, model training, evaluation, and web application development.
@@ -498,6 +532,10 @@ To download the project to your local machine:
 - [GitHub](https://github.com/): Used for version control and collaboration.
 
 These tools enabled the development, evaluation, and deployment of the **Powdery Mildew Detector**, ensuring an efficient and scalable solution.
+
+---
+
+## **Credits**
 
 ---
 
