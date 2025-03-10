@@ -81,7 +81,7 @@ The dataset contains images of cherry leaves categorized into two classes:
 
 ---
 
-## **Hypothesis and Validation** 
+## **Hypotheses and Validation** 
 
 ### **Hypothesis 1: Visual Differences Exist**  
 **Statement:**  
@@ -264,7 +264,7 @@ This page provides an **overview** of the project, highlighting the challenge of
 - **Project dataset information** including data source and purpose  
 - External references for additional reading  
 
-![Quick Project Summary](../mildew-detector/assets/summary.webp)
+![Quick Project Summary](assets/summary.webp)
 
 ---
 
@@ -277,7 +277,7 @@ This page helps users **understand the visual differences** between healthy and 
 - **Difference analysis** highlighting key distinctions  
 - **Image montage feature** for dataset exploration  
 
-![Leaves Visualizer](../mildew-detector/assets/leaves_visualizer.webp)
+![Leaves Visualizer](assets/leaves_visualizer.webp)
 
 ---
 
@@ -290,7 +290,7 @@ This page allows users to **upload cherry leaf images** and determine whether th
 - **Visualization of model confidence levels**  
 - **Downloadable CSV report** for record-keeping  
 
-![Mildew Detector](../mildew-detector/assets/mildew-detector.webp)
+![Mildew Detector](assets/mildew-detector.webp)
 
 ---
 
@@ -303,7 +303,7 @@ This page presents the **hypotheses and validation methods** used in the project
 - **Hypothesis 3:** Do confidence scores indicate reliability?  
 - **Validation methods and findings** for each hypothesis  
 
-![Project Hypothesis](../mildew-detector/assets/project_hypothesis.webp)
+![Project Hypotheses](assets/project_hypothesis.webp)
 
 ---
 
@@ -318,7 +318,7 @@ This page showcases the **performance evaluation** of the trained ML model. It i
 - **ROC curve & prediction probability histogram**  
 - **Final model performance summary**  
 
-![ML Performance Metrics](../mildew-detector/assets/ml_performance.webp)
+![ML Performance Metrics](assets/ml_performance.webp)
 
 ---
 
@@ -452,7 +452,7 @@ The **Softmax CNN model** was selected as the **best-performing architecture**, 
 ## **Testing**
 
 The model was tested using **both manual testing and automated tests with pytest** to ensure reliability and performance.  
-For detailed test results, please refer to **[TEST_RESULTS.md](//TEST_RESULTS.md)**.
+For detailed test results, please refer to **[TEST_RESULTS.md](TEST_RESULTS.md)**.git ffdsafd
 
 ---
 
