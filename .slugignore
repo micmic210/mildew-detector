@@ -3,7 +3,6 @@ inputs/mildew_dataset/cherry-leaves/test/Infected*
 inputs/mildew_dataset/cherry-leaves/train/Healthy*
 inputs/mildew_dataset/cherry-leaves/train/Infected*
 .devcontainer/
-.streamlit/
 attachment/*
 tests/*
 pytest.ini
