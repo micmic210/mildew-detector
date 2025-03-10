@@ -192,13 +192,13 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Confusion Matrix Insights:**\n"
-                f"Train Set Confusion Matrix\n"
+                f"- Train Set Confusion Matrix\n"
                 f"- The model demonstrates **high accuracy** but shows **some misclassification** between Healthy and Infected leaves.\n "
-                f"- The model demonstrates **high accuracy** but shows **some misclassification** between Healthy and Infected leaves.\n "
-                f"Test Set Confusion Matrix\n"
-                f"- The model performs **exceptionally well** on the test set, with **only 2 misclassified samples**..\n "
+                f"- Misclassified samples are balanced across both classes, indicating **room for minor optimization** but no major class bias.\n "
+                f"- Test Set Confusion Matrix\n"
+                f"- The model performs **exceptionally well** on the test set, with **only 2 misclassified samples**.\n "
                 f"- **No false negatives** for Healthy leaves and **only 2 false positives** for Infected leaves suggest **strong generalization**.\n "
-                f"- **The model is **ready for deployment**, showing robust classification performance.**.\n "
+                f"- **The model is **ready for deployment**, showing robust classification performance**.\n "
             )
 
     st.write(f"---")
