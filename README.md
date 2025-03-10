@@ -7,6 +7,26 @@ To address this inefficiency, the **IT and Innovation team** has proposed an **M
 
 ---
 
+## **Table of Contents**
+1. [Business Requirements](#business-requirements)
+2. [ML Business Case](#ml-business-case)
+3. [Dataset Content](#dataset-content)
+4. [Hypotheses and Validation](#hypotheses-and-validation)
+5. [Rationale to Map Business Requirements](#rationale-to-map-business-requirements)
+6. [User Stories & Acceptance Criteria](#user-stories--acceptance-criteria)
+7. [Dashboard Design](#dashboard-design)
+8. [Methodology: CRISP-DM Approach](#methodology-crisp-dm-approach)
+9. [Rationale for Model Selection](#rationale-for-model-selection)
+10. [Model Creation](#model-creation)
+11. [Testing](#testing)
+12. [Bugs](#bugs)
+13. [Deployment](#deployment)
+14. [Languages and Libraries](#languages-and-libraries)
+15. [Credits](#credits)
+16. [Acknowledgements](#acknowledgements)
+
+---
+
 ## **Business Requirements**
 ### 1. **Visual Differentiation**  
 Conduct a study to **distinguish healthy from mildew-infected leaves** through image analysis. 
