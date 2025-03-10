@@ -39,6 +39,7 @@ def plot_predictions_probabilities(pred_proba, pred_class):
     # Ensure unique keys to avoid duplicate elements
     st.plotly_chart(fig, use_container_width=True, key=f"plot_{pred_class}_{id(fig)}")
 
+
 def resize_input_image(img, version):
     """
     Reshape image to match the expected input size.

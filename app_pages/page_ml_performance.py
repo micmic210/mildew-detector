@@ -81,7 +81,10 @@ def page_ml_performance_metrics():
             y="PC2",
             color="Label",
             title=f"PCA: Feature Space of Dataset",
-            labels={"PC1": "Principal Component 1", "PC2": "Principal Component 2"},
+            labels={
+                "PC1": "Principal Component 1",
+                "PC2": "Principal Component 2",
+            },
             width=700,
             height=500,
         )
@@ -96,10 +99,13 @@ def page_ml_performance_metrics():
             with col2:
                 st.info(
                     f"**PCA Insights:**\n"
-                    f"- PCA reduces high-dimensional image data into a **2D representation**.\n"
+                    f"- PCA reduces high-dimensional image data into "
+                    f"a **2D representation**.\n"
                     f"- Each dot represents a **sample leaf** from the dataset.\n"
-                    f"- **Healthy (dark blue)** and **Infected (light blue)** samples should ideally form separate clusters.\n"
-                    f"- If **overlapping occurs**, it suggests that more feature extraction may be needed."
+                    f"- **Healthy (dark blue)** and **Infected (light blue)** "
+                    f"samples should ideally form separate clusters.\n"
+                    f"- If **overlapping occurs**, it suggests that more "
+                    f"feature extraction may be needed."
                 )
 
     st.write(f"---")
@@ -111,7 +117,9 @@ def page_ml_performance_metrics():
         with col2:
             st.image(
                 f"outputs/{version}/labels_distribution.png",
-                caption=f"Class Distribution in Train, Validation, and Test Sets",
+                caption=(
+                    f"Class Distribution in Train, Validation, and Test Sets"
+                ),
                 use_container_width=True,
             )
 
@@ -121,8 +129,10 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Dataset Insights:**\n"
-                f"- The dataset is split into **Training (70%)**, **Validation (10%)**, and **Test (20%)**.\n"
-                f"- Each split contains a **balanced distribution** of Healthy and Infected samples.\n"
+                f"- The dataset is split into **Training (70%)**, "
+                f"**Validation (10%)**, and **Test (20%)**.\n"
+                f"- Each split contains a **balanced distribution** of "
+                f"Healthy and Infected samples.\n"
                 f"- This ensures the model learns effectively without bias."
             )
 
@@ -131,8 +141,12 @@ def page_ml_performance_metrics():
     # Classification Reports (Train vs. Test)
     st.write(f"### Classification Report (Train vs. Test)")
 
-    train_report_path = f"outputs/{version}/classification_report_train.csv"
-    test_report_path = f"outputs/{version}/classification_report_test.csv"
+    train_report_path = (
+        f"outputs/{version}/classification_report_train.csv"
+    )
+    test_report_path = (
+        f"outputs/{version}/classification_report_test.csv"
+    )
 
     col1, col2 = st.columns(2)
 
@@ -152,9 +166,13 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Classification Report Insights:**\n"
-                f"- Precision, Recall, and F1-Score should be **high and consistent** across train and test sets.\n"
-                f"- A significant drop in test performance may indicate **overfitting**, meaning the model memorized training data but struggles with unseen data.\n"
-                f"- A balanced model should have a **small difference** between train and test scores."
+                f"- Precision, Recall, and F1-Score should be **high and "
+                f"consistent** across train and test sets.\n"
+                f"- A significant drop in test performance may indicate "
+                f"**overfitting**, meaning the model memorized training "
+                f"data but struggles with unseen data.\n"
+                f"- A balanced model should have a **small difference** "
+                f"between train and test scores."
             )
 
     st.write(f"---")
@@ -184,13 +202,18 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Confusion Matrix Insights:**\n"
-                f"- **True Positives (TP) & True Negatives (TN):** Correctly classified samples.\n"
-                f"- **False Positives (FP) & False Negatives (FN):** Misclassified samples.\n"
-                f"- A high **FN rate** suggests the model struggles to detect infections.\n"
-                f"- Ideally, TP and TN should be high, while FP and FN should be low."
+                f"- **True Positives (TP) & True Negatives (TN):** "
+                f"Correctly classified samples.\n"
+                f"- **False Positives (FP) & False Negatives (FN):** "
+                f"Misclassified samples.\n"
+                f"- A high **FN rate** suggests the model struggles "
+                f"to detect infections.\n"
+                f"- Ideally, TP and TN should be high, while FP and FN "
+                f"should be low."
             )
 
     st.write(f"---")
+
 
     # Model Learning Curves (Accuracy & Loss)
     st.write(f"### Model Training Performance")
@@ -217,9 +240,12 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Learning Curve Insights:**\n"
-                f"- The **Loss Curve** should steadily decrease, indicating the model is learning correctly.\n"
-                f"- The **Accuracy Curve** should increase and stabilize, with minimal overfitting.\n"
-                f"- Large gaps between **training and validation curves** suggest **overfitting** and should be minimized."
+                f"- The **Loss Curve** should steadily decrease, indicating "
+                f"the model is learning correctly.\n"
+                f"- The **Accuracy Curve** should increase and stabilize, "
+                f"with minimal overfitting.\n"
+                f"- Large gaps between **training and validation curves** "
+                f"suggest **overfitting** and should be minimized."
             )
 
     st.write(f"---")
@@ -238,18 +264,19 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**Histogram Insights:**\n"
-                f"- The histogram represents the model's confidence in its predictions.\n"
-                f"- Ideally, predictions should be **clearly separated** at the 0.5 probability threshold.\n"
-                f"- **Overlapping regions** indicate uncertainty in classifications, which may suggest further model tuning is needed."
+                f"- The histogram represents the model's confidence "
+                f"in its predictions.\n"
+                f"- Ideally, predictions should be **clearly separated** "
+                f"at the 0.5 probability threshold.\n"
+                f"- **Overlapping regions** indicate uncertainty in "
+                f"classifications, which may suggest further model tuning."
             )
 
     st.write(f"---")
 
     # ROC Curve
     st.write(f"### ROC Curve")
-    display_image_fixed_size(
-        f"outputs/{version}/roc_curve.png", f"ROC Curve", width=700
-    )
+    display_image_fixed_size(f"outputs/{version}/roc_curve.png", f"ROC Curve", width=700)
 
     # ROC Curve Insights
     with st.container():
@@ -257,9 +284,12 @@ def page_ml_performance_metrics():
         with col2:
             st.info(
                 f"**ROC Curve Insights:**\n"
-                f"- The **AUC score** (Area Under Curve) measures the model’s ability to separate classes.\n"
-                f"- A value close to **1.0** indicates excellent performance, while a value near **0.5** suggests poor discrimination.\n"
-                f"- A well-performing model should have an AUC **greater than 0.90**."
+                f"- The **AUC score** (Area Under Curve) measures the "
+                f"model’s ability to separate classes.\n"
+                f"- A value close to **1.0** indicates excellent performance, "
+                f"while a value near **0.5** suggests poor discrimination.\n"
+                f"- A well-performing model should have an AUC "
+                f"**greater than 0.90**."
             )
 
     st.write(f"---")
@@ -273,7 +303,10 @@ def page_ml_performance_metrics():
         df_test_eval = pd.DataFrame(
             {
                 "Metric": ["Loss", "Accuracy"],
-                "Value": [round(test_eval[0], 4), round(test_eval[1], 4)],
+                "Value": [
+                    round(test_eval[0], 4),
+                    round(test_eval[1], 4),
+                ],
             }
         )
 
@@ -287,5 +320,6 @@ def page_ml_performance_metrics():
 
     st.write(
         f"For additional details, visit the "
-        f"[Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)."
+        f"[Project README](https://github.com/micmic210/mildew-detector/blob/"
+        f"main/README.md)."
     )

@@ -12,18 +12,22 @@ from src.machine_learning.predictive_analysis import (
 
 
 def page_mildew_detector_body():
-    """Allows users to upload cherry leaf images for mildew detection using a trained ML model."""
+    """Allows users to upload cherry leaf images for mildew detection
+    using a trained ML model."""
 
     st.write(f"## Mildew Detection in Cherry Leaves")
 
     st.info(
-        f"Upload images of cherry leaves to determine whether they are **healthy** or **infected with powdery mildew**. "
-        f"You can analyze multiple images simultaneously and download the results as a CSV report."
+        f"Upload images of cherry leaves to determine whether they are "
+        f"**healthy** or **infected with powdery mildew**. You can analyze "
+        f"multiple images simultaneously and download the results as a "
+        f"CSV report."
     )
 
     st.write(
-        f"For testing, you can download sample infected and healthy leaf images from "
-        f"[this Kaggle dataset](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
+        f"For testing, you can download sample infected and healthy leaf "
+        f"images from [this Kaggle dataset](https://www.kaggle.com/datasets/"
+        f"codeinstitute/cherry-leaves)."
     )
 
     st.write(f"---")
@@ -44,7 +48,10 @@ def page_mildew_detector_body():
             img_array = np.array(img_pil)
             st.image(
                 img_pil,
-                caption=f"Image Size: {img_array.shape[1]}px width x {img_array.shape[0]}px height",
+                caption=(
+                    f"Image Size: {img_array.shape[1]}px width x "
+                    f"{img_array.shape[0]}px height"
+                ),
             )
 
             # Resize the image for model input
@@ -76,5 +83,6 @@ def page_mildew_detector_body():
 
     st.write(
         f"For additional details, visit the "
-        f"[Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)."
+        f"[Project README](https://github.com/micmic210/mildew-detector/blob/"
+        f"main/README.md)."
     )
