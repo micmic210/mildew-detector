@@ -14,24 +14,24 @@ from src.machine_learning.predictive_analysis import (
 def page_mildew_detector_body():
     """Allows users to upload cherry leaf images for mildew detection using a trained ML model."""
 
-    st.write("## Mildew Detection in Cherry Leaves")
+    st.write(f"## Mildew Detection in Cherry Leaves")
 
     st.info(
-        "Upload images of cherry leaves to determine whether they are **healthy** or **infected with powdery mildew**. "
-        "You can analyze multiple images simultaneously and download the results as a CSV report."
+        f"Upload images of cherry leaves to determine whether they are **healthy** or **infected with powdery mildew**. "
+        f"You can analyze multiple images simultaneously and download the results as a CSV report."
     )
 
     st.write(
-        "For testing, you can download sample infected and healthy leaf images from "
-        "[this Kaggle dataset](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
+        f"For testing, you can download sample infected and healthy leaf images from "
+        f"[this Kaggle dataset](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
     )
 
-    st.write("---")
+    st.write(f"---")
 
     # Image upload section
-    st.write("**Upload a clear image of a cherry leaf (or multiple images).**")
+    st.write(f"**Upload a clear image of a cherry leaf (or multiple images).**")
     images_buffer = st.file_uploader(
-        " ", type=["jpeg", "jpg", "png"], accept_multiple_files=True
+        f" ", type=["jpeg", "jpg", "png"], accept_multiple_files=True
     )
 
     if images_buffer:
@@ -70,11 +70,11 @@ def page_mildew_detector_body():
 
         # Display and allow download of results
         if not df_report.empty:
-            st.success("Analysis Report")
+            st.success(f"Analysis Report")
             st.table(df_report)
             st.markdown(download_dataframe_as_csv(df_report), unsafe_allow_html=True)
 
     st.write(
-        "For additional details, visit the "
-        "[Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)."
+        f"For additional details, visit the "
+        f"[Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)."
     )

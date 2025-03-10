@@ -73,7 +73,7 @@ def page_summary_body():
     """
     )
 
-    # External Resources (Styled for Consistency)
+    # External Resources
 
     st.info(
         f"""

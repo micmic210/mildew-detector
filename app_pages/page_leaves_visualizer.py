@@ -10,10 +10,10 @@ import random
 def page_leaves_visualizer_body():
     """Displays visualizations to differentiate Healthy vs. Mildew-Infected leaves."""
 
-    st.write("## Leaves Visualizer")
+    st.write(f"## Leaves Visualizer")
     st.info(
-        "This study visually differentiates **Healthy vs. Mildew-Infected cherry leaves**, "
-        "helping to understand patterns before applying machine learning."
+        f"This study visually differentiates **Healthy vs. Mildew-Infected cherry leaves**, "
+        f"helping to understand patterns before applying machine learning."
     )
 
     version = "v1"
@@ -24,70 +24,70 @@ def page_leaves_visualizer_body():
     diff_avg_path = f"outputs/{version}/avg_diff.png"
 
     # Ensure file existence before loading images
-    if st.checkbox("Average & Variability Images"):
+    if st.checkbox(f"Average & Variability Images"):
         if os.path.exists(avg_healthy_path) and os.path.exists(avg_infected_path):
             avg_healthy = imread(avg_healthy_path)
             avg_infected = imread(avg_infected_path)
 
             st.warning(
-                "The **average and variability images** do not reveal obvious patterns that allow intuitive differentiation. "
-                "However, mildew-infected leaves display more **white streaks at the center**, suggesting some textural differences."
+                f"The **average and variability images** do not reveal obvious patterns that allow intuitive differentiation. "
+                f"However, mildew-infected leaves display more **white streaks at the center**, suggesting some textural differences."
             )
 
             st.image(
                 [avg_healthy, avg_infected],
                 caption=[
-                    "Healthy Leaf - Average & Variability",
-                    "Mildew-Infected Leaf - Average & Variability",
+                    f"Healthy Leaf - Average & Variability",
+                    f"Mildew-Infected Leaf - Average & Variability",
                 ],
             )
         else:
             st.error(
-                "⚠️ Required visualization files not found. Please check your preprocessing steps."
+                f"⚠️ Required visualization files not found. Please check your preprocessing steps."
             )
 
-        st.write("---")
+        st.write(f"---")
 
-    if st.checkbox("Difference Between Average Healthy & Infected Leaves"):
+    if st.checkbox(f"Difference Between Average Healthy & Infected Leaves"):
         if os.path.exists(diff_avg_path):
             diff_avg = imread(diff_avg_path)
 
             st.warning(
-                "The **difference between average images** does not provide strong visual cues for classification. "
-                "Further feature extraction techniques may be required."
+                f"The **difference between average images** does not provide strong visual cues for classification. "
+                f"Further feature extraction techniques may be required."
             )
 
-            st.image(diff_avg, caption="Difference Between Average Images")
+            st.image(diff_avg, caption=f"Difference Between Average Images")
         else:
             st.error(
-                "⚠️ Difference image not found. Ensure it's generated in preprocessing."
+                f"⚠️ Difference image not found. Ensure it's generated in preprocessing."
             )
 
-        st.write("---")
+        st.write(f"---")
 
-    if st.checkbox("Image Montage"):
-        st.write("To refresh the montage, click on 'Create Montage'.")
+    if st.checkbox(f"Image Montage"):
+        st.write(f"To refresh the montage, click on 'Create Montage'.")
 
         my_data_dir = "inputs/mildew_dataset/cherry-leaves"
         labels = os.listdir(os.path.join(my_data_dir, "validation"))
-        label_to_display = st.selectbox("Select Class Label", options=labels, index=0)
+        label_to_display = st.selectbox(f"Select Class Label", options=labels, index=0)
 
-        if st.button("Create Montage"):
+        if st.button(f"Create Montage"):
             image_montage(
-                dir_path=os.path.join(my_data_dir, "validation"),
+                dir_path=f"{my_data_dir}/validation",
                 label_to_display=label_to_display,
                 nrows=8,
                 ncols=3,
                 figsize=(10, 25),
             )
 
-        st.write("---")
+        st.write(f"---")
 
 
 def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 10)):
     """Generates a montage of images for a selected class label."""
 
-    sns.set_style("white")
+    sns.set_style(f"white")
 
     labels = os.listdir(dir_path)
 
@@ -113,12 +113,12 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 10)):
 
             axes[row, col].imshow(img)
             axes[row, col].set_title(f"{img_shape[1]}px x {img_shape[0]}px")
-            axes[row, col].axis("off")
+            axes[row, col].axis(f"off")
 
         plt.tight_layout()
         st.pyplot(fig=fig)
 
     else:
         st.error(
-            "⚠️ The selected label does not exist. Please choose from available options."
+            f"⚠️ The selected label '{label_to_display}' does not exist. Please choose from available options."
         )

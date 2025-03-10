@@ -443,12 +443,6 @@ Ensure the following files are present in the project directory:
 4. Wait for the **deployment to complete**.
 5. Click **"View"** to access the live web application.
 
----
-
-### 5. Enable Automatic Deployment (Optional)
-
-1. In the **Deploy** tab, scroll to **"Automatic Deploys"**.
-2. Click **"Enable Automatic Deploys"** to allow Heroku to deploy new changes automatically.
 
 ---
 

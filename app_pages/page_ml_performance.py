@@ -63,15 +63,15 @@ def page_ml_performance_metrics():
 
     version = "v1"
 
-    st.write("## Model Performance & Evaluation")
+    st.write(f"## Model Performance & Evaluation")
 
     st.info(
-        "This section presents how the dataset was split for training, "
-        "how well the model performed, and key performance metrics."
+        f"This section presents how the dataset was split for training, "
+        f"how well the model performed, and key performance metrics."
     )
 
     # PCA Feature Space Visualization
-    st.write("### Feature Space Visualization (PCA)")
+    st.write(f"### Feature Space Visualization (PCA)")
 
     pca_data = load_pca_data(version)
     if pca_data is not None:
@@ -80,7 +80,7 @@ def page_ml_performance_metrics():
             x="PC1",
             y="PC2",
             color="Label",
-            title="PCA: Feature Space of Dataset",
+            title=f"PCA: Feature Space of Dataset",
             labels={"PC1": "Principal Component 1", "PC2": "Principal Component 2"},
             width=700,
             height=500,
@@ -95,23 +95,23 @@ def page_ml_performance_metrics():
             col1, col2, col3 = st.columns([1, 6, 1])
             with col2:
                 st.info(
-                    "**PCA Insights:**\n"
-                    "- PCA reduces high-dimensional image data into a **2D representation**.\n"
-                    "- Each dot represents a **sample leaf** from the dataset.\n"
-                    "- **Healthy (dark blue)** and **Infected (light blue)** samples should ideally form separate clusters.\n"
-                    "- If **overlapping occurs**, it suggests that more feature extraction may be needed."
+                    f"**PCA Insights:**\n"
+                    f"- PCA reduces high-dimensional image data into a **2D representation**.\n"
+                    f"- Each dot represents a **sample leaf** from the dataset.\n"
+                    f"- **Healthy (dark blue)** and **Infected (light blue)** samples should ideally form separate clusters.\n"
+                    f"- If **overlapping occurs**, it suggests that more feature extraction may be needed."
                 )
 
-    st.write("---")
+    st.write(f"---")
 
     # Dataset Split & Class Distribution
-    st.write("### Dataset Split & Class Distribution")
+    st.write(f"### Dataset Split & Class Distribution")
     with st.container():
-        col1, col2, col3 = st.columns([1, 6, 1])  
+        col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
             st.image(
                 f"outputs/{version}/labels_distribution.png",
-                caption="Class Distribution in Train, Validation, and Test Sets",
+                caption=f"Class Distribution in Train, Validation, and Test Sets",
                 use_container_width=True,
             )
 
@@ -120,16 +120,16 @@ def page_ml_performance_metrics():
         col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
             st.info(
-                "**Dataset Insights:**\n"
-                "- The dataset is split into **Training (70%)**, **Validation (10%)**, and **Test (20%)**.\n"
-                "- Each split contains a **balanced distribution** of Healthy and Infected samples.\n"
-                "- This ensures the model learns effectively without bias."
+                f"**Dataset Insights:**\n"
+                f"- The dataset is split into **Training (70%)**, **Validation (10%)**, and **Test (20%)**.\n"
+                f"- Each split contains a **balanced distribution** of Healthy and Infected samples.\n"
+                f"- This ensures the model learns effectively without bias."
             )
 
-    st.write("---")
+    st.write(f"---")
 
     # Classification Reports (Train vs. Test)
-    st.write("### Classification Report (Train vs. Test)")
+    st.write(f"### Classification Report (Train vs. Test)")
 
     train_report_path = f"outputs/{version}/classification_report_train.csv"
     test_report_path = f"outputs/{version}/classification_report_test.csv"
@@ -137,12 +137,12 @@ def page_ml_performance_metrics():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.write("#### Train Set Classification Report")
+        st.write(f"#### Train Set Classification Report")
         train_report = pd.read_csv(train_report_path)
         st.dataframe(train_report, height=300)
 
     with col2:
-        st.write("#### Test Set Classification Report")
+        st.write(f"#### Test Set Classification Report")
         test_report = pd.read_csv(test_report_path)
         st.dataframe(test_report, height=300)
 
@@ -151,30 +151,30 @@ def page_ml_performance_metrics():
         col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
             st.info(
-                "**Classification Report Insights:**\n"
-                "- Precision, Recall, and F1-Score should be **high and consistent** across train and test sets.\n"
-                "- A significant drop in test performance may indicate **overfitting**, meaning the model memorized training data but struggles with unseen data.\n"
-                "- A balanced model should have a **small difference** between train and test scores."
+                f"**Classification Report Insights:**\n"
+                f"- Precision, Recall, and F1-Score should be **high and consistent** across train and test sets.\n"
+                f"- A significant drop in test performance may indicate **overfitting**, meaning the model memorized training data but struggles with unseen data.\n"
+                f"- A balanced model should have a **small difference** between train and test scores."
             )
 
-    st.write("---")
+    st.write(f"---")
 
     # Confusion Matrix (Train vs. Test)
-    st.write("### Confusion Matrix (Train vs. Test)")
+    st.write(f"### Confusion Matrix (Train vs. Test)")
 
     col1, col2 = st.columns(2)
 
     with col1:
         display_image_fixed_size(
             f"outputs/{version}/confusion_matrix_train.png",
-            "Confusion Matrix (Train Set)",
+            f"Confusion Matrix (Train Set)",
             width=350,
         )
 
     with col2:
         display_image_fixed_size(
             f"outputs/{version}/confusion_matrix_test.png",
-            "Confusion Matrix (Test Set)",
+            f"Confusion Matrix (Test Set)",
             width=350,
         )
 
@@ -183,31 +183,31 @@ def page_ml_performance_metrics():
         col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
             st.info(
-                "**Confusion Matrix Insights:**\n"
-                "- **True Positives (TP) & True Negatives (TN):** Correctly classified samples.\n"
-                "- **False Positives (FP) & False Negatives (FN):** Misclassified samples.\n"
-                "- A high **FN rate** suggests the model struggles to detect infections.\n"
-                "- Ideally, TP and TN should be high, while FP and FN should be low."
+                f"**Confusion Matrix Insights:**\n"
+                f"- **True Positives (TP) & True Negatives (TN):** Correctly classified samples.\n"
+                f"- **False Positives (FP) & False Negatives (FN):** Misclassified samples.\n"
+                f"- A high **FN rate** suggests the model struggles to detect infections.\n"
+                f"- Ideally, TP and TN should be high, while FP and FN should be low."
             )
 
-    st.write("---")
+    st.write(f"---")
 
     # Model Learning Curves (Accuracy & Loss)
-    st.write("### Model Training Performance")
+    st.write(f"### Model Training Performance")
 
     col1, col2 = st.columns(2)
 
     with col1:
         st.image(
             f"outputs/{version}/accuracy_curve_softmax.png",
-            caption="Model Training Accuracy",
+            caption=f"Model Training Accuracy",
             use_container_width=True,
         )
 
     with col2:
         st.image(
             f"outputs/{version}/loss_curve_softmax.png",
-            caption="Model Training Loss",
+            caption=f"Model Training Loss",
             use_container_width=True,
         )
 
@@ -216,20 +216,20 @@ def page_ml_performance_metrics():
         col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
             st.info(
-                "**Learning Curve Insights:**\n"
-                "- The **Loss Curve** should steadily decrease, indicating the model is learning correctly.\n"
-                "- The **Accuracy Curve** should increase and stabilize, with minimal overfitting.\n"
-                "- Large gaps between **training and validation curves** suggest **overfitting** and should be minimized."
+                f"**Learning Curve Insights:**\n"
+                f"- The **Loss Curve** should steadily decrease, indicating the model is learning correctly.\n"
+                f"- The **Accuracy Curve** should increase and stabilize, with minimal overfitting.\n"
+                f"- Large gaps between **training and validation curves** suggest **overfitting** and should be minimized."
             )
 
-    st.write("---")
+    st.write(f"---")
 
     # Prediction Probability Histogram
-    st.write("### Prediction Probability Histogram (Test Set)")
+    st.write(f"### Prediction Probability Histogram (Test Set)")
     display_image_fixed_size(
         f"outputs/{version}/histogram_test.png",
-        "Prediction Probabilities Histogram (Test Set)",
-        width=700,  
+        f"Prediction Probabilities Histogram (Test Set)",
+        width=700,
     )
 
     # Histogram Insights
@@ -237,33 +237,35 @@ def page_ml_performance_metrics():
         col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
             st.info(
-                "**Histogram Insights:**\n"
-                "- The histogram represents the model's confidence in its predictions.\n"
-                "- Ideally, predictions should be **clearly separated** at the 0.5 probability threshold.\n"
-                "- **Overlapping regions** indicate uncertainty in classifications, which may suggest further model tuning is needed."
+                f"**Histogram Insights:**\n"
+                f"- The histogram represents the model's confidence in its predictions.\n"
+                f"- Ideally, predictions should be **clearly separated** at the 0.5 probability threshold.\n"
+                f"- **Overlapping regions** indicate uncertainty in classifications, which may suggest further model tuning is needed."
             )
 
-    st.write("---")
+    st.write(f"---")
 
     # ROC Curve
-    st.write("### ROC Curve")
-    display_image_fixed_size(f"outputs/{version}/roc_curve.png", "ROC Curve", width=700)
+    st.write(f"### ROC Curve")
+    display_image_fixed_size(
+        f"outputs/{version}/roc_curve.png", f"ROC Curve", width=700
+    )
 
     # ROC Curve Insights
     with st.container():
         col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
             st.info(
-                "**ROC Curve Insights:**\n"
-                "- The **AUC score** (Area Under Curve) measures the model’s ability to separate classes.\n"
-                "- A value close to **1.0** indicates excellent performance, while a value near **0.5** suggests poor discrimination.\n"
-                "- A well-performing model should have an AUC **greater than 0.90**."
+                f"**ROC Curve Insights:**\n"
+                f"- The **AUC score** (Area Under Curve) measures the model’s ability to separate classes.\n"
+                f"- A value close to **1.0** indicates excellent performance, while a value near **0.5** suggests poor discrimination.\n"
+                f"- A well-performing model should have an AUC **greater than 0.90**."
             )
 
-    st.write("---")
+    st.write(f"---")
 
     # Final Model Performance Table
-    st.write("### Final Model Performance on Test Set")
+    st.write(f"### Final Model Performance on Test Set")
 
     test_eval = load_test_evaluation(version)
 
@@ -281,9 +283,9 @@ def page_ml_performance_metrics():
                 st.table(df_test_eval)
 
     else:
-        st.error("Unexpected format in evaluation.pkl. Verify file contents.")
+        st.error(f"Unexpected format in evaluation.pkl. Verify file contents.")
 
     st.write(
-        "For additional details, visit the "
-        "[Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)."
+        f"For additional details, visit the "
+        f"[Project README](https://github.com/micmic210/mildew-detector/blob/main/README.md)."
     )
