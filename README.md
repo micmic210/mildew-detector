@@ -463,64 +463,54 @@ For detailed test results, please refer to **[TEST_RESULTS.md](TEST_RESULTS.md)*
 
 ## **Deployment**
 
-### Heroku Deployment for Powdery Mildew Detector
+### Deployment on Heroku
 
-### 1. Create a Heroku App
+The following steps outline how to deploy this project on **Heroku**:
 
-1. Log in to [Heroku](https://dashboard.heroku.com/apps). If you don’t have an account, sign up.
-2. Click **"New"** → **"Create new app"**.
-3. Enter a **unique app name**.
-4. Select the region closest to your location.
-5. Click **"Create app"**.
-
-### 2. Prepare the Project for Deployment
-
-Ensure the following files are present in the project directory:
-
-- **`requirements.txt`**  
-  Contains all the necessary dependencies.
-
-- **`Procfile`**  
-  Specifies how the application should be executed. It should include:
-  ```plaintext
-  web: sh setup.sh && streamlit run app.py
-
-### 3. Connect the GitHub Repository to Heroku
-
-1. Navigate to the **Deploy** tab in Heroku.
-2. Under **"Deployment Method"**, select **GitHub**.
-3. Click **"Connect to GitHub"** and authorize access if prompted.
-4. Search for your repository containing the **Powdery Mildew Detector** project.
-5. Click **"Connect"** to link the repository.
-
-### 4. Deploy the Application
-
-1. Ensure all code changes are **committed and pushed** to GitHub.
-2. Under **"Manual Deploy"**, select the **main branch**.
-3. Click **"Deploy Branch"**.
-4. Wait for the **deployment to complete**.
-5. Click **"View"** to access the live web application.
+1. **Create a `requirements.txt` file** in GitHub to list all necessary dependencies for the program to run on Heroku.  
+2. **Set the `runtime.txt` file** to specify a Python version compatible with the Heroku-20 stack.  
+3. **Push the latest changes** to GitHub, then navigate to your **Heroku dashboard** to create and deploy the application.  
+4. **Create a new app**: Click **"Create New App"**, provide a **unique name**, and select a **geographical region**.  
+5. **Add the Heroku Python buildpack**: Go to the **Settings** tab and add **heroku/python** as the buildpack.  
+6. **Connect to GitHub**: In the **Deploy** tab, select **GitHub** as the deployment method, then link the repository for this project.  
+7. **Select the branch to deploy** and click **"Deploy Branch"**.  
+8. **Enable automatic deployment (optional)**: Click **"Enable Automatic Deploys"** for continuous deployment, or manually deploy by selecting **"Deploy Branch"**.  
+9. **Monitor the build logs** as Heroku installs dependencies and builds the application.  
+10. Once deployment is successful, the application will be accessible via a link similar to: https://your-project-name.herokuapp.com/
+11. **Handling large slug sizes**: If the slug size exceeds the limit, move **unnecessary large files** to the `.slugignore` file to optimize deployment.
 
 ---
 
-## Forking and Cloning the Repository
-
 ### Forking the Repository
 
-To create a personal copy of this project:
+Forking this GitHub repository creates a **copy of the original project** in your own GitHub account, allowing you to view, modify, or experiment without affecting the main repository.  
 
-1. Go to the **Powdery Mildew Detector GitHub Repository**.
-2. Click **"Fork"** in the top-right corner.
+### Steps to fork the repository:  
+1. Go to the **GitHub repository** for this project and log into your **GitHub account**.  
+2. Click the **"Fork"** button (top right, above "Settings").  
+3. Choose where to fork the repository (e.g., your GitHub account).  
+4. You now have a **duplicate repository** in your GitHub account.
 
-### Cloning the Repository
+---
 
-To download the project to your local machine:
+### Making a Local Clone
 
-1. Visit the **GitHub repository**.
-2. Click **"<> Code"** → **"Copy URL"**.
-3. Open a terminal and run the following command:
-   ```bash
-   git clone https://github.com/micmic210/mildew-detector.git
+Cloning a repository **downloads a full copy of all project files** and version history to your local machine.  
+
+### Steps to clone this repository:  
+1. Navigate to the **GitHub repository** and log into your **GitHub account**.  
+2. Click the **"Code"** button (top right).  
+3. Choose one of the following options:  
+- **Clone with HTTPS**  
+- **Open with GitHub Desktop**  
+- **Download ZIP**  
+4. To clone using **HTTPS**, copy the provided URL.  
+5. Open **Git Bash** (if not installed, download and install it first).  
+6. Navigate to the **directory** where you want to clone the repository.  
+7. Run the following command:
+```bash
+git clone https://github.com/micmic210/mildew-detector.git
+8.	Press Enter and wait for the cloning process to complete.
 
 ---
 
@@ -552,21 +542,28 @@ To download the project to your local machine:
 - [Heroku](https://dashboard.heroku.com/): Deployed the web application for public access.
 - [GitHub](https://github.com/): Used for version control and collaboration.
 
-These tools enabled the development, evaluation, and deployment of the **Powdery Mildew Detector**, ensuring an efficient and scalable solution.
 
 ---
 
 ## **Credits**
 
----
-
-## **Acknowledgements**
-
+### Content
 - **Farmy & Foods** for dataset contribution.  
 - **Kaggle** for hosting the Cherry Leaves dataset.  
 - **TensorFlow & Scikit-Learn** for ML documentation & support.  
+
+
+### Acknowledgements
+
+- **Many thanks to my mentor, Mo Shami, for the one-off session and guidance.
+
 - **Code Institute** for guidance in project structuring.  
-- **Online ML communities & forums** for troubleshooting support.  
+
+### ### Learning Resources  
+- [YouTube Video Title](https://www.youtube.com/example)  
+- [Website GeeksforGeeks](https://www.geeksforgeeks.org/flower-recognition-using-convolutional-neural-network/)  
+- [Website datacamp](https://www.datacamp.com/blog/what-is-machine-learning)  
+- [Website Towards AI Inc.](https://towardsai.net/p/l/impact-of-optimizers-in-image-classifiers)  
 
 ---
 
