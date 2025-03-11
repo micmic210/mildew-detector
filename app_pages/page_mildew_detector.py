@@ -32,7 +32,9 @@ def page_mildew_detector_body():
     st.write(f"---")
 
     # Image upload section
-    st.write(f"**Upload a clear image of a cherry leaf (or multiple images).**")
+    st.write(
+        f"**Upload a clear image of a cherry leaf (or multiple images).**"
+    )
     images_buffer = st.file_uploader(
         f" ", type=["jpeg", "jpg", "png"], accept_multiple_files=True
     )
