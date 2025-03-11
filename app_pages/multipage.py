@@ -29,22 +29,47 @@ class MultiPage:
         """
         Runs the multi-page app with the default Streamlit sidebar.
         """
-        # **Move Title Up**
+        
         st.markdown(
             """
             <style>
                 .main-title {
                     text-align: center;
-                    font-size: 50px;
                     font-weight: bold;
                     color: #567d46;
-                    margin-top: -50px; /* Move title up */
+                    margin-top: 0px; /* Removed negative margin */
                 }
+
+                @media screen and (min-width: 1025px) {
+                    .main-title {
+                        font-size: 50px;
+                    }
+                }
+
+                @media screen and (max-width: 1024px) {
+                    .main-title {
+                        font-size: 36px;
+                    }
+                }
+
+                @media screen and (max-width: 768px) {
+                    .main-title {
+                        font-size: 28px;
+                    }
+                }
+
+                @media screen and (max-width: 480px) {
+                    .main-title {
+                        font-size: 20px;
+                    }
+                }
+
                 .separator {
                     border: 2px solid #567d46;
                     margin-bottom: 20px;
                 }
             </style>
+
 
             <h1 class='main-title'>🍃 Powdery Mildew Detector</h1>
             <hr class='separator'>

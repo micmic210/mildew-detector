@@ -27,24 +27,35 @@ st.markdown(
         font-family: 'Roboto', sans-serif;
     }
 
-    /* Make the main content full width on mobile */
-    @media screen and (max-width: 768px) {
-        .stApp {
-            padding: 5px;
-        }
-        .block-container {
-            padding: 0.5rem 0.8rem;
-        }
+    /* Ensure main content adjusts properly */
+    .stApp {
+        padding: 5px;
     }
 
-    /* Adjust sidebar width dynamically */
+    .block-container {
+        padding: 0.5rem 0.8rem;
+    }
+
+    /* Sidebar: Reduce width for better responsiveness */
     @media screen and (max-width: 1024px) {
         .stSidebar {
-            width: 200px !important;
+            max-width: 180px !important;
         }
     }
 
-    /* Improve responsiveness of tables */
+    @media screen and (max-width: 768px) {
+        .stSidebar {
+            max-width: 150px !important;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .stSidebar {
+            display: none; /* Hide sidebar on small screens */
+        }
+    }
+
+    /* Tables should remain scrollable */
     table {
         width: 100% !important;
         display: block;
@@ -52,7 +63,7 @@ st.markdown(
         white-space: nowrap;
     }
 
-    /* Resize images dynamically */
+    /* Make images responsive */
     img {
         max-width: 100% !important;
         height: auto;
@@ -60,7 +71,7 @@ st.markdown(
         margin: 0 auto;
     }
 
-    /* Fix text overflow issues */
+    /* Prevent text overflow */
     .stMarkdown, .stTextInput, .stTextArea, .stSelectbox {
         word-wrap: break-word !important;
         white-space: normal !important;
@@ -69,6 +80,4 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-# Run the app
 app.run()
