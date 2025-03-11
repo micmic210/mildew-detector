@@ -14,20 +14,19 @@ from src.machine_learning.predictive_analysis import (
 def page_mildew_detector_body():
     """Allows users to upload cherry leaf images for mildew detection
     using a trained ML model."""
-
     st.write(f"## Mildew Detection in Cherry Leaves")
 
     st.info(
         f"Upload images of cherry leaves to determine whether they are "
         f"**healthy** or **infected with powdery mildew**. You can analyze "
-        f"multiple images simultaneously and download the results as a "
-        f"CSV report."
+        f"multiple images simultaneously and download the results as a CSV "
+        f"report."
     )
 
     st.write(
         f"For testing, you can download sample infected and healthy leaf "
-        f"images from [this Kaggle dataset](https://www.kaggle.com/datasets/"
-        f"codeinstitute/cherry-leaves)."
+        f"images from [this Kaggle dataset]"
+        f"(https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
     )
 
     st.write(f"---")
@@ -79,7 +78,10 @@ def page_mildew_detector_body():
         if not df_report.empty:
             st.success(f"Analysis Report")
             st.table(df_report)
-            st.markdown(download_dataframe_as_csv(df_report), unsafe_allow_html=True)
+            st.markdown(
+                download_dataframe_as_csv(df_report),
+                unsafe_allow_html=True,
+            )
 
     st.write(
         f"For additional details, visit the "
