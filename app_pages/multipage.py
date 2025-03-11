@@ -90,7 +90,11 @@ class MultiPage:
 
         # Sidebar Navigation with Hamburger Menu for Mobile
         with st.sidebar:
-            page = st.radio("Menu", self.pages, format_func=lambda page: page["title"])
+            page = st.radio(
+                "Menu",
+                self.pages,
+                format_func=lambda page: page["title"]
+            )
 
         # Render the selected page
         page["function"]()
