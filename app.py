@@ -22,7 +22,8 @@ app.add_page("ML Performance Metrics", page_ml_performance_metrics)
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@
+    300;400;700&display=swap');
 
     html, body, [class*="st-"] {
         font-family: 'Roboto', sans-serif;
