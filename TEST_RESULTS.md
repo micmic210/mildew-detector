@@ -4,11 +4,11 @@ This document provides a **detailed breakdown of the testing process**, includin
 
 ---
 
-### **Manual Testing**
+## **Manual Testing**
 **Objective:**  
 Manual testing was conducted to verify that each **User Story & Business Requirement** is met through functionality checks on the **relevant web pages**.
 
-## Manual Testing Table
+### Manual Testing Table
 
 | **Test Case ID** | **User Story** | **Test Scenario** | **Test Steps** | **Expected Outcome** | **Web Page** | **Result** |
 |-----------------|--------------|---------------|------------|----------------|----------|---------|
@@ -30,7 +30,7 @@ Manual testing was conducted to verify that each **User Story & Business Require
 
 ---
 
-## **Automated Testing (pytest)**
+## **Automated Testing: pytest**
 **Objective:**  
 Automated tests were conducted using **pytest** to verify key model and application functionalities.
 
@@ -59,3 +59,5 @@ tests/test_mildew_detector.py::test_download_dataframe_as_csv PASSED     [100%]
 
 - **All tests passed successfully, confirming that core functionalities work as expected.**
 - **Two deprecation warnings were noted, which should be monitored for future Python updates.**
+
+## **Automated Testing: PEP 8**

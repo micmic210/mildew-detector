@@ -397,6 +397,8 @@ To determine the most effective model for **powdery mildew detection**, three di
   - **Potential future expansion for multi-class classification**
   - **Stronger robustness compared to MobileNetV2**
 
+The **trial-and-error** folder contains the actual Jupyter notebooks along with their outputs **[trial_and_error](attachment/trial_and_error)**. Additionally, the **attachment** folder provides a comprehensive summary of the hyperparameter tuning history, model evaluation results, and automated training outcomes **[attachment](attachment)**. These resources offer insights into the decision-making process behind model selection and refinement. 
+
 ---
 
 ## **Model Creation**
