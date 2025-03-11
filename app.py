@@ -18,7 +18,6 @@ app.add_page("Mildew Detector", page_mildew_detector_body)
 app.add_page("Project Hypothesis", page_project_hypothesis_body)
 app.add_page("ML Performance Metrics", page_ml_performance_metrics)
 
-# Apply Roboto font globally
 st.markdown(
     """
     <style>
@@ -27,47 +26,49 @@ st.markdown(
     html, body, [class*="st-"] {
         font-family: 'Roboto', sans-serif;
     }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
-
-st.markdown(
-    """
-    <style>
     /* Make the main content full width on mobile */
     @media screen and (max-width: 768px) {
         .stApp {
-            padding: 10px;
+            padding: 5px;
         }
         .block-container {
-            padding: 0rem 1rem;
+            padding: 0.5rem 0.8rem;
         }
     }
 
-    /* Fix sidebar width on small screens */
+    /* Adjust sidebar width dynamically */
     @media screen and (max-width: 1024px) {
         .stSidebar {
-            width: 250px !important;
+            width: 200px !important;
         }
     }
 
     /* Improve responsiveness of tables */
     table {
         width: 100% !important;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     /* Resize images dynamically */
     img {
         max-width: 100% !important;
         height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Fix text overflow issues */
+    .stMarkdown, .stTextInput, .stTextArea, .stSelectbox {
+        word-wrap: break-word !important;
+        white-space: normal !important;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
-
 
 # Run the app
 app.run()
