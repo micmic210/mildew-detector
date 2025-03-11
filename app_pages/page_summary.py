@@ -4,19 +4,19 @@ import glob
 
 def page_summary_body():
     """Displays the project summary with an overview of powdery mildew on
-    cherry trees, dataset details, and business requirements.
-    """
+    cherry trees, dataset details, and business requirements."""
 
     # Project Description
     st.write(
         f"## **Project Summary**\n"
         f"Farmy & Foods, a leading agricultural company, faces challenges in "
         f"managing **powdery mildew outbreaks** in its cherry plantations. "
-        f"Currently, mildew detection relies on a **manual inspection process**, "
-        f"requiring **30 minutes per tree**, making it **time-consuming and "
-        f"impractical** for thousands of trees across multiple farms.\n\n"
-        f"To improve efficiency, the **IT and Innovation team** has proposed an "
-        f"**ML-powered detection system** that instantly classifies cherry "
+        f"Currently, mildew detection relies on a **manual inspection "
+        f"process**, requiring **30 minutes per tree**, making it "
+        f"**time-consuming and impractical** for thousands of trees across "
+        f"multiple farms.\n\n"
+        f"To improve efficiency, the **IT and Innovation team** has proposed "
+        f"an **ML-powered detection system** that instantly classifies cherry "
         f"leaves as **healthy or infected** using **image analysis**. "
         f"This solution aims to **reduce inspection time** and could be "
         f"expanded to other crops if successful. The dataset consists of "
@@ -69,8 +69,8 @@ def page_summary_body():
         f"**Project Dataset**\n\n"
         f"The dataset, provided by **Farmy & Foods**, consists of "
         f"cherry tree leaf images used for training and evaluating the "
-        f"AI model. It includes **over 4,000 labeled images**, sourced "
-        f"from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves).\n"
+        f"AI model. It includes **over 4,000 labeled images**, sourced from "
+        f"[Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves).\n"
         f"To ensure **efficient model training**, a subset of these images "
         f"is used to balance accuracy and computational cost."
     )
