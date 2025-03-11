@@ -45,37 +45,6 @@ st.markdown(
         }
     }
 
-    /* HIDE SIDEBAR AND SHOW HAMBURGER MENU */
-    @media screen and (max-width: 768px) {
-        .stSidebar {
-            display: none !important;
-        }
-        .hamburger-menu {
-            display: block !important;
-        }
-    }
-
-    @media screen and (min-width: 769px) {
-        .hamburger-menu {
-            display: none !important;
-        }
-    }
-
-    /* Hamburger button styling */
-    .hamburger-menu {
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 1000;
-        background-color: #567d46;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-    }
     </style>
     """,
     unsafe_allow_html=True,
