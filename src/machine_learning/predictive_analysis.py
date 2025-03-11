@@ -17,7 +17,10 @@ def plot_predictions_probabilities(pred_proba, pred_class):
 
     # Create a DataFrame for probabilities
     prob_per_class = pd.DataFrame(
-        data=[1 - pred_proba, pred_proba],  # Ensure correct probability mapping
+        data=[
+            1 - pred_proba,
+            pred_proba,
+        ],  # Ensure correct probability mapping
         index=class_labels,
         columns=["Probability"],
     )
@@ -37,7 +40,11 @@ def plot_predictions_probabilities(pred_proba, pred_class):
     )
 
     # Ensure unique keys to avoid duplicate elements
-    st.plotly_chart(fig, use_container_width=True, key=f"plot_{pred_class}_{id(fig)}")
+    st.plotly_chart(
+        fig,
+        use_container_width=True,
+        key=f"plot_{pred_class}_{id(fig)}",
+    )
 
 
 def resize_input_image(img, version):
@@ -76,6 +83,8 @@ def load_model_and_predict(my_image, version):
 
     # Display results
     st.write("### Prediction Result:")
-    st.write(f"The AI analysis indicates the sample leaf is **{pred_class.lower()}**")
+    st.write(
+        f"The AI analysis indicates the sample leaf is " f"**{pred_class.lower()}**"
+    )
 
     return pred_proba, pred_class
