@@ -18,6 +18,7 @@ app.add_page("Mildew Detector", page_mildew_detector_body)
 app.add_page("Project Hypothesis", page_project_hypothesis_body)
 app.add_page("ML Performance Metrics", page_ml_performance_metrics)
 
+# Apply Global CSS Styles for Font & Layout
 st.markdown(
     """
     <style>
@@ -36,48 +37,69 @@ st.markdown(
         padding: 0.5rem 0.8rem;
     }
 
-    /* Sidebar: Reduce width for better responsiveness */
+    /* Sidebar: Adjust width for better responsiveness */
     @media screen and (max-width: 1024px) {
         .stSidebar {
             max-width: 180px !important;
         }
     }
 
+    /* HIDE SIDEBAR AND SHOW HAMBURGER MENU */
     @media screen and (max-width: 768px) {
         .stSidebar {
-            max-width: 150px !important;
+            display: none !important;
+        }
+        .hamburger-menu {
+            display: block !important;
         }
     }
 
-    @media screen and (max-width: 480px) {
-        .stSidebar {
-            display: none; /* Hide sidebar on small screens */
+    @media screen and (min-width: 769px) {
+        .hamburger-menu {
+            display: none !important;
         }
     }
 
-    /* Tables should remain scrollable */
-    table {
-        width: 100% !important;
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    /* Make images responsive */
-    img {
-        max-width: 100% !important;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-
-    /* Prevent text overflow */
-    .stMarkdown, .stTextInput, .stTextArea, .stSelectbox {
-        word-wrap: break-word !important;
-        white-space: normal !important;
+    /* Hamburger button styling */
+    .hamburger-menu {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1000;
+        background-color: #567d46;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+# Hamburger Menu Button (Simulated Sidebar Toggle)
+st.markdown(
+    """
+    <script>
+    function toggleSidebar() {
+        var sidebar = document.querySelector('.stSidebar');
+        if (sidebar.style.display === "none") {
+            sidebar.style.display = "block";
+        } else {
+            sidebar.style.display = "none";
+        }
+    }
+    </script>
+
+    <button class="hamburger-menu" onclick="toggleSidebar()">
+        ☰ Menu
+    </button>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Run the Multi-Page App
 app.run()

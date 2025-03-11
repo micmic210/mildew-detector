@@ -9,6 +9,7 @@ class MultiPage:
         self.pages = []
         self.app_name = app_name
 
+        # Streamlit page configuration
         st.set_page_config(
             page_title=self.app_name,
             page_icon="🍃",
@@ -29,7 +30,8 @@ class MultiPage:
         """
         Runs the multi-page app with the default Streamlit sidebar.
         """
-        
+
+        # Title & Styling
         st.markdown(
             """
             <style>
@@ -37,39 +39,48 @@ class MultiPage:
                     text-align: center;
                     font-weight: bold;
                     color: #567d46;
-                    margin-top: 0px; /* Removed negative margin */
+                    margin-top: 0px;
+                    overflow: hidden;
+                    white-space: nowrap; /* Prevent title from breaking */
+                    text-overflow: ellipsis;
                 }
 
                 @media screen and (min-width: 1025px) {
                     .main-title {
-                        font-size: 50px;
+                        font-size: 55px;
                     }
                 }
 
                 @media screen and (max-width: 1024px) {
                     .main-title {
-                        font-size: 36px;
+                        font-size: 45px;
                     }
                 }
 
                 @media screen and (max-width: 768px) {
                     .main-title {
-                        font-size: 28px;
+                        font-size: 38px;
                     }
                 }
 
                 @media screen and (max-width: 480px) {
                     .main-title {
-                        font-size: 20px;
+                        font-size: 32px;
+                        white-space: normal;
                     }
                 }
+                h2 {
+                    font-size: 28px;
+                }
 
+                p {
+                    font-size: 18px;
+                }
                 .separator {
                     border: 2px solid #567d46;
                     margin-bottom: 20px;
                 }
             </style>
-
 
             <h1 class='main-title'>🍃 Powdery Mildew Detector</h1>
             <hr class='separator'>
@@ -77,10 +88,9 @@ class MultiPage:
             unsafe_allow_html=True,
         )
 
-        # Sidebar Navigation
-        page = st.sidebar.radio(
-            "Menu", self.pages, format_func=lambda page: page["title"]
-        )
+        # Sidebar Navigation with Hamburger Menu for Mobile
+        with st.sidebar:
+            page = st.radio("Menu", self.pages, format_func=lambda page: page["title"])
 
         # Render the selected page
         page["function"]()
