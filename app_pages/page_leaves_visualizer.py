@@ -13,8 +13,8 @@ def page_leaves_visualizer_body():
 
     st.write("## Leaves Visualizer")
     st.info(
-        f"This study visually differentiates **Healthy vs. Mildew-Infected "
-        f"cherry leaves**, helping to understand patterns before applying "
+        f"This study visually differentiates **Healthy vs. Mildew-Infected** "
+        f"cherry leaves, helping to understand patterns before applying "
         f"machine learning."
     )
 
@@ -46,8 +46,8 @@ def page_leaves_visualizer_body():
             )
         else:
             st.error(
-                f"⚠️ Required visualization files not found. "
-                f"Please check your preprocessing steps."
+                f"⚠️ Required visualization files not found. Please check "
+                f"your preprocessing steps."
             )
 
         st.write("---")
@@ -62,7 +62,7 @@ def page_leaves_visualizer_body():
                 f"extraction techniques may be required."
             )
 
-            st.image(diff_avg, caption=f"Difference Between Average Images")
+            st.image(diff_avg, caption="Difference Between Average Images")
         else:
             st.error(
                 f"⚠️ Difference image not found. Ensure it's generated in "
@@ -72,13 +72,13 @@ def page_leaves_visualizer_body():
         st.write("---")
 
     if st.checkbox("Image Montage"):
-        st.write(f"To refresh the montage, click on 'Create Montage'.")
+        st.write("To refresh the montage, click on 'Create Montage'.")
 
         my_data_dir = "inputs/mildew_dataset/cherry-leaves"
         labels = os.listdir(os.path.join(my_data_dir, "validation"))
-        label_to_display = st.selectbox(f"Select Class Label", options=labels, index=0)
+        label_to_display = st.selectbox("Select Class Label", options=labels, index=0)
 
-        if st.button(f"Create Montage"):
+        if st.button("Create Montage"):
             image_montage(
                 dir_path=f"{my_data_dir}/validation",
                 label_to_display=label_to_display,
@@ -93,7 +93,7 @@ def page_leaves_visualizer_body():
 def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 10)):
     """Generates a montage of images for a selected class label."""
 
-    sns.set_style(f"white")
+    sns.set_style("white")
     labels = os.listdir(dir_path)
 
     if label_to_display in labels:
@@ -118,7 +118,7 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 10)):
 
             axes[row, col].imshow(img)
             axes[row, col].set_title(f"{img_shape[1]}px x {img_shape[0]}px")
-            axes[row, col].axis(f"off")
+            axes[row, col].axis("off")
 
         plt.tight_layout()
         st.pyplot(fig=fig)
