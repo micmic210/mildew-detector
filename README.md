@@ -526,9 +526,7 @@ Cloning a repository **downloads a full copy of all project files** and version 
 4. To clone using **HTTPS**, copy the provided URL.  
 5. Open **Git Bash** (if not installed, download and install it first).  
 6. Navigate to the **directory** where you want to clone the repository.  
-7. Run the following command:
-```bash
-git clone https://github.com/micmic210/mildew-detector.git
+7. Run the following command: git clone https://github.com/micmic210/mildew-detector.git
 8.	Press Enter and wait for the cloning process to complete.
 
 ---
@@ -578,7 +576,7 @@ git clone https://github.com/micmic210/mildew-detector.git
 
 - **Code Institute** for guidance in project structuring.  
 
-### ### Learning Resources  
+### Learning Resources  
 - [YouTube Video Title](https://www.youtube.com/example)  
 - [Website GeeksforGeeks](https://www.geeksforgeeks.org/flower-recognition-using-convolutional-neural-network/)  
 - [Website datacamp](https://www.datacamp.com/blog/what-is-machine-learning)  
