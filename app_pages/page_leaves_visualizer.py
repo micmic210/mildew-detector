@@ -82,7 +82,7 @@ def page_leaves_visualizer_body():
             image_montage(
                 dir_path=f"{my_data_dir}/validation",
                 label_to_display=label_to_display,
-                nrows=8,
+                nrows=4,
                 ncols=3,
                 figsize=(10, 25),
             )
@@ -122,6 +122,7 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 10)):
 
         plt.tight_layout()
         st.pyplot(fig=fig)
+        plt.close(fig)
     else:
         st.error(
             f"⚠️ The selected label '{label_to_display}' does not exist. "
