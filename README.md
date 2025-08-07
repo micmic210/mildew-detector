@@ -2,6 +2,11 @@
 ---
 ![Mildew Detector App](assets/powdery_mildew_detector.webp)
 
+### Live Demo  
+Explore the interactive **Mildew Detection App** developed for Farmy & Foods.  
+Instantly classify cherry leaves as **Healthy** or **Mildew-Infected** using image analysis.  
+**[🌿 Launch the App on Render](https://mildew-detector-b8kb.onrender.com/)**  
+
 Farmy & Foods, a leading agricultural company, is facing a growing challenge in managing **powdery mildew outbreaks** in its cherry plantations. This fungal disease affects plant health and threatens the quality of one of their most valuable crops. Currently, mildew detection relies on a **manual inspection process**, where an employee spends **30 minutes per tree** collecting and analyzing leaf samples. If mildew is detected, an additional **one-minute treatment** is applied. Given that the company manages **thousands of cherry trees** across multiple farms, this manual approach is **time-consuming and not scalable**. 
 
 To address this inefficiency, the **IT and Innovation team** has proposed an **ML-powered solution** that can instantly determine whether a cherry leaf is healthy or infected based on **image analysis**. This automated detection system aims to **significantly reduce inspection time** and, if successful, could be expanded to other crops facing similar pest and disease challenges. The dataset consists of **cherry leaf images** collected directly from Farmy & Foods' plantations, ensuring a robust foundation for model training and evaluation. 
