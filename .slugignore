@@ -4,11 +4,9 @@ inputs/mildew_dataset/cherry-leaves/train/Infected*
 inputs/mildew_dataset/cherry-leaves/test/Healthy*
 inputs/mildew_dataset/cherry-leaves/test/Infected*
 
-# Model files - not needed in slug
+# Model files - exclude everything except outputs/v1/softmax.h5
 *.h5
-*.pkl
-*.joblib
-*.npz
+!outputs/v1/softmax.h5
 
 # Development environment and config
 venv/
@@ -29,5 +27,8 @@ pytest.ini
 README.md
 TEST_RESULTS.md
 assets/
+
+# Exclude large experiment data and notebooks
 attachment/
+jupyter_notebooks/
 *.ipynb
